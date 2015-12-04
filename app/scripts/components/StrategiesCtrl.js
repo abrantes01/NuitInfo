@@ -13,4 +13,14 @@ angular.module('sauvetapp')
         console.log(err);
     })
 
+    $scope.save = function(strategy) {
+        $sailsSocket.put("/strategy/" + strategy.id, {
+            instructions: strategy.instructions
+        })
+        .then(function(response) {
+            console.log("saved");
+        }, function(err) {
+            console.log(err);
+        })
+    }
 });
