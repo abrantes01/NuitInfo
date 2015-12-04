@@ -1,0 +1,207 @@
+$white: #ffffff;
+$gray: #eeeeee;
+$green: #8BC34A;
+$red:	#F44336;
+$black: #333333;
+
+.white { color: $white; }
+.gray { color: $gray; }
+.green { color: $green; }
+.red { color: $red; }
+.black { color: $black; }
+
+.bold { font-weight: 700; }
+a:hover { text-decoration: none; }
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	background: $gray;
+	font-family: "Open Sans";
+	margin-bottom: 150px;
+}
+
+
+footer {
+	background: $black;
+	height: 150px;
+	line-height: 150px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+
+	p {
+		margin-bottom: 0;
+	}
+}
+
+.navbar {
+	background: $green;
+	border-radius: 0;
+	border-bottom: 3px solid lighten($green, 15%);
+	margin-bottom: 0;
+
+	a {
+		color: $white;
+	}
+
+	.navbar-brand {
+		font-family: "Montserrat";
+	}
+}
+
+.breadcrumb {
+	a {
+		color: $green;
+	}
+}
+
+#main-wrapper, #helpme-wrapper, #who-wrapper, #map-wrapper {
+	padding-top: 30px;
+}
+
+#main-wrapper {
+	background: $green;
+	padding-bottom: 30px;
+
+	.row {
+		margin-left: -30px;
+		margin-right: -30px;
+	}
+
+	.brand {
+		font-family: "Montserrat";
+		font-size: 30px;
+		margin-bottom: 30px;
+		border-bottom: 1px solid lighten($green, 15%);
+
+		i {
+			font-size: 60px;
+		}
+	}
+
+	.list-group li:first-child {
+		background: $red;
+		border: 0;
+	}
+
+	a {
+		color: $white;
+	}
+
+	.profile-choice {
+		margin-top: 30px;
+
+		li {
+			transition: background 0.3s ease;
+
+			&:first-child {
+				margin-right: 10px;
+			}
+			&:last-child {
+				margin-left: 10px;
+			}
+			&:hover {
+				background: lighten($green, 2%);
+			}
+
+			img {
+				margin-bottom: 10px;
+			}
+		}
+		
+	}
+}
+
+#helpme-wrapper {
+	padding-top: 30px;
+	padding-bottom: 30px;
+
+	h1 {
+		font-size: 24px;
+		margin-bottom: 15px;
+	}
+
+	.choice {
+		&.refuge { 
+			border-bottom: 1px solid lighten($gray, 15%); 
+			padding-bottom: 15px;
+		}
+		&.refuge a { color: $green; }
+		&.help a { color: $red; }
+		a {
+			margin-top: 15px;
+		}
+		.fa {
+			transition: background 0.3s ease;
+			border-radius: 200px;
+			height: 100px;
+			width: 100px;
+			line-height: 100px;
+			font-size: 60px;
+			margin-bottom: 10px;
+		}
+		span {
+			transition: color 0.3s ease;
+		}
+
+		&.refuge:hover {
+			.fa { background: darken($green, 10%); }
+			span { color: darken($green, 10%); }
+		}
+
+		&.help:hover {
+			.fa { background: darken($red, 10%); }
+			span { color: darken($red, 10%); }
+		}
+
+		.fa-home {
+			background: $green;
+		}
+
+		.fa-exclamation {
+			background: $red;
+		}
+
+
+	}
+
+}
+
+#who-wrapper {
+	h1 {
+		margin-bottom: 30px;
+	}
+
+	ul {
+		li {
+			margin: 0 15px 30px;
+
+			a {
+				color: $black;
+				transition: color 0.3s ease;
+
+				&:hover {
+					color: $red;
+				}
+			}
+
+			i {
+				font-size: 100px;
+			}
+		}
+	}
+}
+
+
+
+@media (min-width: 768px) {
+	#helpme-wrapper {
+		.choice.refuge {
+			border: 0;
+		}
+	}
+}

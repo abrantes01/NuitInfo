@@ -31,7 +31,7 @@ angular
         url: '/app',
         templateUrl: '/views/app.html'
     })
-    .state("app.home", {
+    .state("home", {
         url: "/home",
         controller: 'MainCtrl',
         templateUrl: '/views/home/home.html'
@@ -40,9 +40,13 @@ angular
         url: "/helpme",
         templateUrl: '/views/home/helpme.html'
     })
-    .state("app.profile",{
-        url:"/profile",
-        templateUrl:'/views/home/profile.html'
+    .state("app.who",{
+        url:"/who",
+        templateUrl:'/views/home/who.html'
+    })
+    .state("app.map",{
+        url:"/map",
+        templateUrl:'/views/home/map.html'
     })
     .state('admin', {
         url: '/admin',

@@ -221,33 +221,33 @@ module.exports = function (grunt) {
 
 
         // Compiles Sass to CSS and generates necessary files if requested
-        compass: {
-            options: {
-                sassDir: '<%= yeoman.app %>/styles',
-                cssDir: '.tmp/styles',
-                generatedImagesDir: '.tmp/images/generated',
-                imagesDir: '<%= yeoman.app %>/images',
-                javascriptsDir: '<%= yeoman.app %>/scripts',
-                fontsDir: '<%= yeoman.app %>/styles/fonts',
-                importPath: './bower_components',
-                httpImagesPath: '/images',
-                httpGeneratedImagesPath: '/images/generated',
-                httpFontsPath: '/styles/fonts',
-                relativeAssets: false,
-                assetCacheBuster: false,
-                raw: 'Sass::Script::Number.precision = 10\n'
-            },
-            dist: {
-                options: {
-                    generatedImagesDir: '<%= yeoman.dist %>/images/generated'
-                }
-            },
-            server: {
-                options: {
-                    sourcemap: true
-                }
-            }
-        },
+        // compass: {
+        //     options: {
+        //         sassDir: '<%= yeoman.app %>/styles',
+        //         cssDir: '.tmp/styles',
+        //         generatedImagesDir: '.tmp/images/generated',
+        //         imagesDir: '<%= yeoman.app %>/images',
+        //         javascriptsDir: '<%= yeoman.app %>/scripts',
+        //         fontsDir: '<%= yeoman.app %>/styles/fonts',
+        //         importPath: './bower_components',
+        //         httpImagesPath: '/images',
+        //         httpGeneratedImagesPath: '/images/generated',
+        //         httpFontsPath: '/styles/fonts',
+        //         relativeAssets: false,
+        //         assetCacheBuster: false,
+        //         raw: 'Sass::Script::Number.precision = 10\n'
+        //     },
+        //     dist: {
+        //         options: {
+        //             generatedImagesDir: '<%= yeoman.dist %>/images/generated'
+        //         }
+        //     },
+        //     server: {
+        //         options: {
+        //             sourcemap: true
+        //         }
+        //     }
+        // },
 
         // Renames files for browser caching purposes
         filerev: {
@@ -421,19 +421,19 @@ module.exports = function (grunt) {
         },
 
         // Run some tasks in parallel to speed up the build process
-        concurrent: {
-            server: [
-                'compass:server'
-            ],
-            test: [
-                'compass'
-            ],
-            dist: [
-                'compass:dist',
-                'imagemin',
-                'svgmin'
-            ]
-        },
+        // concurrent: {
+        //     server: [
+        //         'compass:server'
+        //     ],
+        //     test: [
+        //         'compass'
+        //     ],
+        //     dist: [
+        //         'compass:dist',
+        //         'imagemin',
+        //         'svgmin'
+        //     ]
+        // },
 
         // Test settings
         karma: {
@@ -465,7 +465,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
-            'concurrent:server',
+            //'concurrent:server',
             'autoprefixer:server',
             'connect:livereload',
             'watch'
