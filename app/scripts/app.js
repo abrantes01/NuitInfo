@@ -11,8 +11,7 @@
 angular
 .module('sauvetapp', [
     'ui.router',
-    'sails.io',
-    'textAngular'
+    'sails.io'
 ])
 .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $sailsSocketProvider, $httpProvider) {
 
@@ -23,18 +22,29 @@ angular
     $sailsSocketProvider.interceptors.push('AuthInterceptor');
 
 
-    $urlRouterProvider.otherwise("/home");
+    $urlRouterProvider.otherwise("/app/home");
 
     $stateProvider
     .state('app', {
         url: '/app',
         templateUrl: '/views/app.html'
     })
-
-    .state("home", {
+    .state("app.home", {
         url: "/home",
         controller: 'MainCtrl',
-        templateUrl: '/views/home.html'
-    });
-
+        templateUrl: '/views/home/home.html'
+    })
+    .state('admin', {
+        url: '/admin',
+        templateUrl: '/views/admin.html'
+    })
+    .state('admin.home', {
+        url: '/home',
+        templateUrl: '/views/admin/home.html'
+    })
+    .state('admin.strategies', {
+        url: '/strategies',
+        controller: 'StrategiesCtrl',
+        templateUrl: '/views/admin/strategies.html'
+    })
 });

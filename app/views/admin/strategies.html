@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="panel panel-default" data-ng-repeat="strategy in strategies">
+        <div class="panel-heading">{{ strategy.name }}</div>
+        <div class="panel-body">
+            <textarea class="form-control" data-ng-model="strategy.instructions"></textarea>
+            <br />
+            <button class="btn btn-primary">Enregistrer</button>
+        </div>
+    </div>
+</div>
