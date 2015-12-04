@@ -1,0 +1,239 @@
+/* line 7, ../../app/styles/frontoffice.scss */
+.white {
+  color: #ffffff;
+}
+
+/* line 8, ../../app/styles/frontoffice.scss */
+.gray {
+  color: #eeeeee;
+}
+
+/* line 9, ../../app/styles/frontoffice.scss */
+.green {
+  color: #8BC34A;
+}
+
+/* line 10, ../../app/styles/frontoffice.scss */
+.red {
+  color: #F44336;
+}
+
+/* line 11, ../../app/styles/frontoffice.scss */
+.black {
+  color: #333333;
+}
+
+/* line 13, ../../app/styles/frontoffice.scss */
+.bold {
+  font-weight: 700;
+}
+
+/* line 14, ../../app/styles/frontoffice.scss */
+a:hover {
+  text-decoration: none;
+}
+
+/* line 16, ../../app/styles/frontoffice.scss */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+/* line 21, ../../app/styles/frontoffice.scss */
+body {
+  background: #eeeeee;
+  font-family: "Open Sans";
+  margin-bottom: 150px;
+}
+
+/* line 28, ../../app/styles/frontoffice.scss */
+footer {
+  background: #333333;
+  height: 150px;
+  line-height: 150px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+/* line 36, ../../app/styles/frontoffice.scss */
+footer p {
+  margin-bottom: 0;
+}
+
+/* line 41, ../../app/styles/frontoffice.scss */
+.navbar {
+  background: #8BC34A;
+  border-radius: 0;
+  border-bottom: 3px solid #b0d683;
+  margin-bottom: 0;
+}
+/* line 47, ../../app/styles/frontoffice.scss */
+.navbar a {
+  color: #ffffff;
+}
+/* line 51, ../../app/styles/frontoffice.scss */
+.navbar .navbar-brand {
+  font-family: "Montserrat";
+}
+
+/* line 57, ../../app/styles/frontoffice.scss */
+.breadcrumb a {
+  color: #8BC34A;
+}
+
+/* line 62, ../../app/styles/frontoffice.scss */
+#main-wrapper, #helpme-wrapper, #who-wrapper, #map-wrapper {
+  padding-top: 30px;
+}
+
+/* line 66, ../../app/styles/frontoffice.scss */
+#main-wrapper {
+  background: #8BC34A;
+  padding-bottom: 30px;
+}
+/* line 70, ../../app/styles/frontoffice.scss */
+#main-wrapper .row {
+  margin-left: -30px;
+  margin-right: -30px;
+}
+/* line 75, ../../app/styles/frontoffice.scss */
+#main-wrapper .brand {
+  font-family: "Montserrat";
+  font-size: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #b0d683;
+}
+/* line 81, ../../app/styles/frontoffice.scss */
+#main-wrapper .brand i {
+  font-size: 60px;
+}
+/* line 86, ../../app/styles/frontoffice.scss */
+#main-wrapper .list-group li:first-child {
+  background: #F44336;
+  border: 0;
+}
+/* line 91, ../../app/styles/frontoffice.scss */
+#main-wrapper a {
+  color: #ffffff;
+}
+/* line 95, ../../app/styles/frontoffice.scss */
+#main-wrapper .profile-choice {
+  margin-top: 30px;
+}
+/* line 98, ../../app/styles/frontoffice.scss */
+#main-wrapper .profile-choice li {
+  transition: background 0.3s ease;
+}
+/* line 101, ../../app/styles/frontoffice.scss */
+#main-wrapper .profile-choice li:first-child {
+  margin-right: 10px;
+}
+/* line 104, ../../app/styles/frontoffice.scss */
+#main-wrapper .profile-choice li:last-child {
+  margin-left: 10px;
+}
+/* line 107, ../../app/styles/frontoffice.scss */
+#main-wrapper .profile-choice li:hover {
+  background: #90c652;
+}
+/* line 111, ../../app/styles/frontoffice.scss */
+#main-wrapper .profile-choice li img {
+  margin-bottom: 10px;
+}
+
+/* line 119, ../../app/styles/frontoffice.scss */
+#helpme-wrapper {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+/* line 123, ../../app/styles/frontoffice.scss */
+#helpme-wrapper h1 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+/* line 129, ../../app/styles/frontoffice.scss */
+#helpme-wrapper .choice.refuge {
+  border-bottom: 1px solid white;
+  padding-bottom: 15px;
+}
+/* line 133, ../../app/styles/frontoffice.scss */
+#helpme-wrapper .choice.refuge a {
+  color: #8BC34A;
+}
+/* line 134, ../../app/styles/frontoffice.scss */
+#helpme-wrapper .choice.help a {
+  color: #F44336;
+}
+/* line 135, ../../app/styles/frontoffice.scss */
+#helpme-wrapper .choice a {
+  margin-top: 15px;
+}
+/* line 138, ../../app/styles/frontoffice.scss */
+#helpme-wrapper .choice .fa {
+  transition: background 0.3s ease;
+  border-radius: 200px;
+  height: 100px;
+  width: 100px;
+  line-height: 100px;
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+/* line 147, ../../app/styles/frontoffice.scss */
+#helpme-wrapper .choice span {
+  transition: color 0.3s ease;
+}
+/* line 152, ../../app/styles/frontoffice.scss */
+#helpme-wrapper .choice.refuge:hover .fa {
+  background: #71a436;
+}
+/* line 153, ../../app/styles/frontoffice.scss */
+#helpme-wrapper .choice.refuge:hover span {
+  color: #71a436;
+}
+/* line 157, ../../app/styles/frontoffice.scss */
+#helpme-wrapper .choice.help:hover .fa {
+  background: #ea1c0d;
+}
+/* line 158, ../../app/styles/frontoffice.scss */
+#helpme-wrapper .choice.help:hover span {
+  color: #ea1c0d;
+}
+/* line 161, ../../app/styles/frontoffice.scss */
+#helpme-wrapper .choice .fa-home {
+  background: #8BC34A;
+}
+/* line 165, ../../app/styles/frontoffice.scss */
+#helpme-wrapper .choice .fa-exclamation {
+  background: #F44336;
+}
+
+/* line 175, ../../app/styles/frontoffice.scss */
+#who-wrapper h1 {
+  margin-bottom: 30px;
+}
+/* line 180, ../../app/styles/frontoffice.scss */
+#who-wrapper ul li {
+  margin: 0 15px 30px;
+}
+/* line 183, ../../app/styles/frontoffice.scss */
+#who-wrapper ul li a {
+  color: #333333;
+  transition: color 0.3s ease;
+}
+/* line 187, ../../app/styles/frontoffice.scss */
+#who-wrapper ul li a:hover {
+  color: #F44336;
+}
+/* line 192, ../../app/styles/frontoffice.scss */
+#who-wrapper ul li i {
+  font-size: 100px;
+}
+
+@media (min-width: 768px) {
+  /* line 203, ../../app/styles/frontoffice.scss */
+  #helpme-wrapper .choice.refuge {
+    border: 0;
+  }
+}
+
+/*# sourceMappingURL=frontoffice.css.map */

@@ -48,6 +48,7 @@ angular
     .state("app.map",{
         url:"/map",
         templateUrl:'/views/home/map.html'
+    })
     .state("app.itinary",{
         resolve:{
              center: [
@@ -88,5 +89,5 @@ angular
         url: '/infos',
         controller: 'InfosCtrl',
         templateUrl: '/views/admin/infos.html'
-    })
+    });
 });
