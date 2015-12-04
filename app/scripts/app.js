@@ -11,7 +11,8 @@
 angular
 .module('sauvetapp', [
     'ui.router',
-    'sails.io'
+    'sails.io',
+    'ngMap'
 ])
 .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $sailsSocketProvider, $httpProvider) {
 
@@ -20,6 +21,7 @@ angular
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $httpProvider.interceptors.push('AuthInterceptor');
     $sailsSocketProvider.interceptors.push('AuthInterceptor');
+
 
 
     $urlRouterProvider.otherwise("/app/home");
@@ -40,11 +42,17 @@ angular
     })
     .state('admin.home', {
         url: '/home',
-        templateUrl: '/views/admin/home.html'
+        templateUrl: '/views/admin/home.html',
+        controller: 'AdminCtrl'
     })
     .state('admin.strategies', {
         url: '/strategies',
         controller: 'StrategiesCtrl',
         templateUrl: '/views/admin/strategies.html'
+    })
+    .state('admin.infos', {
+        url: '/infos',
+        controller: 'InfosCtrl',
+        templateUrl: '/views/admin/infos.html'
     })
 });

@@ -1,3 +1,23 @@
 <div class="container">
-    <h2>Carte interactive</h2>
+    <h2>Carte interactive</h2><br />
+
+    <ng-map zoom="14" center="[48.5739200, 7.7455100]">
+        <marker data-ng-repeat="marker in markers" position="{{marker.latitude}},{{marker.longitude}}" title="Hello World!"></marker>
+        <marker data-ng-repeat="center in centers" position="{{center.latitude}},{{center.longitude}}" title="Hello World!"></marker>
+
+        <shape name="polygon"
+          paths="[
+            [25.774252, -80.190262],
+            [18.466465, -66.118292],
+            [32.321384, -64.75737],
+            [25.774252, -80.190262]
+          ]"
+          stroke-color="#FF0000"
+          stroke-opacity="0.8"
+          stroke-weight="2"
+          fill-color="#FF0000"
+          fill-opacity="0.35">
+        </shape>
+    </ng-map>
+    <br /><br />
 </div>
