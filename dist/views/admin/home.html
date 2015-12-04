@@ -1,27 +1,20 @@
 <div class="container">
-    <h2>Carte interactive</h2><br />
+    <h2>Carte interactive</h2><br>
 
     <ng-map zoom="14" center="[48.5809200, 7.7455100]">
         <marker icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png" data-ng-repeat="marker in markers" position="{{marker.latitude}},{{marker.longitude}}" title="Hello World!"></marker>
         <marker icon="/images/safe.png" data-ng-repeat="center in centers" position="{{center.latitude}},{{center.longitude}}" title="Hello World!"></marker>
 
-        <shape name="polygon"
-          paths="[
+        <shape name="polygon" paths="[
             [48.5922144, 7.716621600000053],
             [48.58883999999999, 7.7279419999999845],
             [48.58784410000001, 7.7188416999999845],
             [48.5922144, 7.716621600000053]
-          ]"
-          stroke-color="#ffa500"
-          stroke-opacity="0.8"
-          stroke-weight="2"
-          fill-color="#ffa500"
-          fill-opacity="0.75">
+          ]" stroke-color="#ffa500" stroke-opacity="0.8" stroke-weight="2" fill-color="#ffa500" fill-opacity="0.75">
         </shape>
 
 
-        <shape name="polygon"
-        paths="[
+        <shape name="polygon" paths="[
             [48.58563, 7.74729],
             [48.58637, 7.74946],
             [48.58550, 7.75051],
@@ -29,17 +22,11 @@
             [48.58551, 7.75199],
             [48.58435, 7.74918],
             [48.58563, 7.74729]
-            ]"
-          stroke-color="#FF0000"
-          stroke-opacity="0.8"
-          stroke-weight="2"
-          fill-color="#FF0000"
-          fill-opacity="0.65">
+            ]" stroke-color="#FF0000" stroke-opacity="0.8" stroke-weight="2" fill-color="#FF0000" fill-opacity="0.65">
         </shape>
 
 
-        <shape name="polygon"
-        paths="[
+        <shape name="polygon" paths="[
                     [48.58298, 7.77204],
                     [48.57946, 7.78131],
                     [48.57555, 7.77779],
@@ -48,33 +35,21 @@
                     [48.57691, 7.76912],
                     [48.58117, 7.76990],
                     [48.58298, 7.77204]
-                  ]"
-          stroke-color="#FF0000"
-          stroke-opacity="0.8"
-          stroke-weight="2"
-          fill-color="#FF0000"
-          fill-opacity="0.65">
+                  ]" stroke-color="#FF0000" stroke-opacity="0.8" stroke-weight="2" fill-color="#FF0000" fill-opacity="0.65">
         </shape>
 
 
-        <shape name="polygon"
-        paths="[
+        <shape name="polygon" paths="[
                     [48.58317, 7.73942],
                     [48.58277, 7.74356],
                     [48.58141, 7.74229],
                     [48.58150, 7.73937],
                     [48.58317, 7.73942]
-                  ]"
-          stroke-color="#ffa500"
-          stroke-opacity="0.8"
-          stroke-weight="2"
-          fill-color="#ffa500"
-          fill-opacity="0.75">
+                  ]" stroke-color="#ffa500" stroke-opacity="0.8" stroke-weight="2" fill-color="#ffa500" fill-opacity="0.75">
         </shape>
 
 
-        <shape name="polygon"
-            paths="[
+        <shape name="polygon" paths="[
               [48.58749, 7.73875],
               [48.58875, 7.73995],
               [48.58787, 7.74090],
@@ -82,16 +57,11 @@
               [48.58584, 7.74341],
               [48.58465, 7.74087],
               [48.58749, 7.73875]
-            ]"
-          stroke-color="#FF0000"
-          stroke-opacity="0.8"
-          stroke-weight="2"
-          fill-color="#FF0000"
-          fill-opacity="0.65">
+            ]" stroke-color="#FF0000" stroke-opacity="0.8" stroke-weight="2" fill-color="#FF0000" fill-opacity="0.65">
         </shape>
 
 
 
     </ng-map>
-    <br /><br />
+    <br><br>
 </div>
