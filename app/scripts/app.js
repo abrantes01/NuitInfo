@@ -34,6 +34,14 @@ angular
         controller: 'MainCtrl',
         templateUrl: '/views/home/home.html'
     })
+    .state("app.helpme",{
+        url: "/helpme",
+        templateUrl: '/views/home/helpme.html'
+    })
+    .state("app.profile",{
+        url:"/profile",
+        templateUrl:'/views/home/profile.html'
+    })
     .state('admin', {
         url: '/admin',
         templateUrl: '/views/admin.html'
