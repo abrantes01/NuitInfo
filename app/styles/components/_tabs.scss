@@ -1,0 +1,91 @@
+div#tabs {
+
+    position:fixed;
+    right:0;
+    background: white;
+    border: 1px solid #EEE;
+    border-right-width: 0;
+    width:$with-sidebar-right;
+    padding-top: 50px;
+    top: 0;
+    font-size: 1.4rem;
+    font-weight: 300;
+    height:100%;
+    overflow-y: scroll;
+    
+    a:focus {
+      outline: 0;
+    }
+
+
+    h4.panel-title {
+
+      a {
+        span {
+          color: #444;
+          font-family: "Source Sans Pro";
+          font-size: 1.5rem;
+          font-weight: 400;
+        }
+      }
+    }
+
+
+    .on-drag{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background: rgb(255, 255, 255);
+      z-index: -1;
+      //opacity:0.8;
+      visibility:visible;
+    }
+
+    .on-drag.nv-file-over{
+      opacity: 1;
+      visibility:visible;
+    }
+
+    ul.menu {
+     list-style: none;
+     padding: 0;
+     margin: 0;
+
+     li {
+       float: left;
+       border: 1px solid #EEE;
+       border-top-width: 0;
+       border-left-width: 0;
+       padding: 15px;
+       text-align: center;
+       color: #696969;
+       width: 50%;
+       cursor: pointer;
+     }
+   }
+   .mainView {
+    clear: both;
+  }
+  .active {
+    color: #000;
+    border-bottom-width: 0;
+    font-weight: 600;
+  }
+
+  .panel-heading {
+      background-color: #F9F9F9;
+      margin-bottom: 0;
+      border-radius: 0;
+      border-left-width: 0;
+      border-color: #EEE;
+      border-top: 1px solid #EEE;
+      margin-top: -2px;
+  }
+
+  .panel {
+      border: 0;
+      box-shadow: none;
+      margin-bottom: 0;
+      margin-top: -1px;
+  }
+}

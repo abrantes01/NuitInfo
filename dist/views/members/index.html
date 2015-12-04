@@ -1,0 +1,35 @@
+<div id="members" data-ng-controller="MembersCtrl" data-ng-if="group.type != 'GLOBAL' ">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="panel-title" href="javascript:void(0)" data-ng-click="isMembersOpen = !isMembersOpen">
+                    <img src="images/members/members-icon.svg" width="18px" class="cloud-icon">
+                    <i class="pull-right fa fa-chevron-up" ng-class="{'fa-chevron-down': isMembersOpen, 'fa-chevron-up': !isMembersOpen}"></i>
+                    <span>{{ 'group.members' | translate }} ({{ group.users.length }})</span>
+                </a>
+            </h4>
+        </div>
+        <div class="panel-body" data-ng-if="isMembersOpen">
+
+            <tags-input data-ng-model="group.inviteMembers" display-property="fullName" key-property="id" max-tags="10" on-tag-added="addUser()" add-from-autocomplete-only="true" placeholder="{{ 'group.invite' | translate }}">
+                <auto-complete source="loadUsers($query)"></auto-complete>
+            </tags-input>
+
+            <br>
+            <ul class="users">
+                <li data-ng-repeat="user in group.users | orderBy: '-type'" data-ui-sref="app.profile({ id: user.id })">
+                    <a href="javascript:;" class="displayName">
+                        <span class="pull-right user-status" data-ng-if="user.type == 9">{{ 'group.student' | translate }}</span>
+                        <span class="pull-right user-status" data-ng-if="user.type == 89">{{ 'group.teacher' | translate }}</span>
+                        <span class="pull-right user-status" data-ng-if="user.type == 96">{{ 'group.admin' | translate }}</span>
+
+                        <img ng-src="{{ user.avatar }}" alt="" class="avatar avatar-xs-small">
+                        {{ user.firstName }} {{ user.lastName }}
+                    </a>
+
+                    <i class="fa fa-ban" data-ng-click="kick(user)" data-ng-show="isOwner() && currentUser.id != user.id" tooltip-trigger tooltip-placement="top" tooltip="{{ 'group.tooltip-remove-user' | translate }} {{ room.name }}"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

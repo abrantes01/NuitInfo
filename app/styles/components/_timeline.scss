@@ -1,0 +1,342 @@
+.tlUpload{
+    position: relative;
+    overflow: hidden;
+    margin: 9px 15px;
+    color:#9FA4A6;
+    font-size:1.6rem;
+}
+
+.tlUpload > input{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.tl-file{
+    width:50%;
+    margin:3px 13px;
+}
+
+.tl-delete-file{
+    color:#D22B22;
+    cursor:pointer;
+}
+
+.download-file-btn{
+    border-radius: 50px;
+    margin-top: 20px;
+    border:1px solid #53BF89;
+    background:#53BF89;
+}
+.download-file-btn:hover{
+    color:white;
+}
+
+
+.tweet .e-entry-title {
+    font-size: 1.2rem;
+    font-family: Source Sans Pro;
+}
+
+
+
+.timeline-wrapper {
+
+    font-size: 1.3rem;
+    padding-top: 20px;
+    height: 100%;
+    padding-left: 10px;
+
+    .create-post {
+        textarea.form-control {
+            height: 45px;
+            font-family: "Source Sans Pro";
+            font-size: 1.5rem;
+            border: 0;
+            padding:12px 15px;
+            transition: all .5s ease;
+            box-shadow: none;
+        }
+
+        textarea.form-control:focus {
+            height: 70px;
+            outline: 0;
+        }
+
+        button {
+            margin-right: 10px;
+            margin-bottom: 5px;
+        }
+    }
+
+    .panel {
+
+        border: 1px solid #e1e8ed;
+        margin-bottom: 15px;
+
+        .panel-body {
+            padding: 18px;
+            padding-bottom: 15px;
+        }
+
+        .m-b {
+            margin-bottom: 15px;
+        }
+
+        .avatar {
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            float: left;
+            margin-right: 15px;
+
+            img {
+                height: auto;
+                max-width: 100%;
+                vertical-align: middle;
+                border-radius: 5px;
+            }
+        }
+
+        .displayName {
+            font-size: 1.4rem;
+        }
+        .clear {
+            display: block;
+
+            a {
+                line-height: 21px;
+            }
+        }
+        .clear, .line, .text-ellipsis {
+            overflow: hidden;
+        }
+
+        .text-muted {
+            color: #868687;
+            display: block;
+            font-weight: 300;
+            font-size:1.3rem;
+            height: 15px;
+        }
+
+        .text-muted::first-letter {
+            text-transform: uppercase;
+        }
+
+        .course-img{
+            background-size:100% 100%;
+        }
+
+        .m-t {
+            margin-top: 15px;
+        }
+
+        .preview-link {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            margin-top: 20px;
+            display: block;
+            border: 1px solid rgba(119, 119, 119, 0.28);
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .course-post {
+
+            height: 190px;
+            margin-top:15px;
+            background-size: 100%;
+            background-position: 100% 100%;
+            position: relative;
+            display: table;
+            width: 100%;
+            border-radius: 3px;
+            cursor: pointer;
+
+            .centered {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+                background-size: cover;
+                position: relative;
+                color: white;
+
+                h1 {
+                    font-size: 1.9rem;
+                    color: white;
+                    font-weight: 400;
+                    -webkit-font-smoothing: antialiased;
+                    margin-bottom: 10px;
+                }
+            }
+
+            .check-course-button:hover {
+                transition-property: background-color;
+                transition-duration: .4s;
+                transition-timing-fonction: ease-inout;
+                background-color: rgba(255,255,255,1);
+                color: #17374A;
+            }
+
+            .check-course-button {
+                margin-top: 17px;
+                background: 0 0;
+                border: 1px solid #fff;
+                color:white;
+            }
+
+            .text-white {
+                color: #fff;
+            }
+            .btn-rounded {
+                padding-right: 20px;
+                padding-left: 20px;
+                border-radius: 50px;
+            }
+        }
+
+        .handin-post {
+            padding-top: 15px;
+        }
+
+        .publication-msg{
+
+            line-height: 20px;
+            font-size: 1.4rem;
+            margin-top: 13px;
+
+            span.quote {
+                margin: 5px;
+                font-size: 2rem;
+            }
+
+            a {
+                color: #547CD0;
+            }
+
+            .document-post{
+                margin:10px 0px;
+
+
+                a.download-cta{
+                    font-size:1.3rem;
+                    background: #4296c5;
+                    color:white;
+                    border-radius:3px;
+                    padding:4px 12px;
+                    margin-top: 10px;
+                    display: inline-block;
+                }
+            }
+
+        }
+
+        .handin-button {
+            border: 1px solid #4296c5;
+            background: #4296c5;
+            border-radius: 50px;
+            margin-top: 20px;
+        }
+
+        .handin-button:hover, .handin-button:focus {
+            color: white;
+            background: #307093;
+        }
+
+        i.remove {
+            float: right;
+            right: 0px;
+            visibility: hidden;
+            top: 0px;
+            color: #868687;
+            cursor: pointer;
+            z-index: 999999;
+            font-size: 1.8rem;
+            margin-left: 15px;
+        }
+
+        div.panel-body:hover {
+            i.remove {
+                visibility: visible;
+            }
+        }
+    }
+
+    .course-svg{
+        fill:#4D90C4;
+    }
+
+    .post-svg, .handin-svg, .file-svg {
+        fill: #3F90C4;
+        float: left;
+        margin-right:10px;
+        margin-top:7px;
+    }
+
+    .handin-svg {
+        fill: #D22B22;
+    }
+
+    svg {
+        float: right;
+    }
+
+
+
+    textarea {
+        height:55px !important;
+    }
+
+
+    .upload-cta {
+        position:relative;
+        color:grey;
+        font-size:1.6rem;
+        margin:7px 15px;
+
+        .upload-file {
+            position: absolute;
+            z-index: 999999999999999;
+            cursor: pointer;
+            right: 0;
+            width: 100px;
+            height: 17px;
+            opacity: 0;
+        }
+    }
+
+}
+
+p.e-entry-title {
+    font-size: 1.1rem;
+}
+
+.picture-preview {
+    display: block;
+    overflow: hidden;
+    max-height: 200px;
+    border: 1px solid rgba(119, 119, 119, 0.28);
+    margin-bottom: 10px;
+
+    transition: max-height 0.25s ease-out;
+
+
+    img {
+        width: 100%
+    }
+}
+
+.hoverimg {
+    max-height: 3000px;
+    transition: max-height 0.75s ease-in;
+}

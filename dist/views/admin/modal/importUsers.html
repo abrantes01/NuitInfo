@@ -1,0 +1,50 @@
+<!-- Translation DONE -->
+<div class="modal-header">
+    <h3 class="modal-title">Importer des utilisateurs</h3>
+</div>
+
+<div id="import-users" class="modal-body">
+
+    <p>
+        Veuillez respecter le format du fichier Excel prédéfini ci-dessous :<br /><br />
+        <a target="_blank" href="/assets/squelette_excel.xlsx" class="underline">Télécharger le squelette Excel</a>
+    </p>
+
+    <p class="nbUsers">
+        <b>Utilisateurs créés : {{ nbUsers }}</b>
+    </p>
+
+    <div id="errorUsers" ng-if="errorUsers.length > 0">
+        <p>Les utilisateurs suivant n'ont pas pu être créés :</p>
+        <ul>
+            <li data-ng-repeat="u in errorUsers track by $index">{{u}}</li>
+        </ul>
+    </div>
+
+    <div uploader="uploader"
+        class="dropzone"
+        nv-file-drop
+        nv-file-select=""
+        nv-file-over>
+
+        <div class="dz-message needsclick">
+            <span data-ng-if="!fileItem.file">
+                Glissez le fichier Excel
+
+                <a href="javascript:;">
+                    <input type="file" nv-file-select uploader="uploader" />
+                    ou cliquez ici
+                </a>
+            </span>
+
+            <span data-ng-if="fileItem.file.name">
+                {{ fileItem.file.name }}
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer" style="margin-top:35px;">
+    <button type="submit" data-ng-click="import()" class="btn btn-primary">Importer</button>
+    <a href="javascript:;" data-ng-click="cancel()" class="btn btn-default">Fermer</a>
+</div>

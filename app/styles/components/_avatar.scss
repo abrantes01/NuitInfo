@@ -1,0 +1,49 @@
+#modal-avatar {
+  .wrapper-md{
+    padding:20px;
+
+    .bg-lightgrey {
+      background-color: #edf1f2;
+      height: 100%
+    }
+
+    img-crop{width:100%;height:100%;display:block;position:relative;overflow:hidden}img-crop canvas{display:block;position:absolute;top:50%;left:50%;outline:0;-webkit-tap-highlight-color:transparent}
+
+    .wrapper-sm{
+      padding:10px;
+    }
+
+    .m-b{
+      margin-bottom:15px;
+      font-size:1.4rem;
+
+      input{
+        display:block;
+        margin-top:10px;
+      }
+    }
+
+    .inline{
+      display: inline-block;
+      padding: 10px;
+    }
+    .b-a{
+      border:1px solid #dee5e7;
+    }
+
+    .row {
+        .wrapper-sm {
+            width: 290px;
+            float: left;
+            height: 300px;
+            margin-right: 15px;
+            margin-left: 15px;
+        }
+    }
+
+  }
+}
+
+  .modal-footer {
+      margin-top: 25px;
+  }

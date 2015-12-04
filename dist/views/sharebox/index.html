@@ -1,0 +1,286 @@
+<style>
+.popover-content {
+    padding: 0;
+}
+</style>
+
+<div id="sharebox" data-ng-controller="ShareboxCtrl">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a class="panel-title" href="javascript:void(0)" data-ng-click="isShareboxOpen = !isShareboxOpen">
+					<img src="images/sharebox/sharebox-icon.svg" width="18px" class="cloud-icon">
+					<i class="pull-right fa fa-chevron-up" ng-class="{'fa-chevron-down': isShareboxOpen, 'fa-chevron-up': !isShareboxOpen}"></i>
+					<span>Sharebox ({{ folders.length + files.length }})</span>
+				</a>
+			</h4>
+		</div>
+		<div data-ng-show="isShareboxOpen">
+			<div class="panel-body">
+
+			<div class="buttons pull-right">
+				<a class="m-r upload-file-cta" href="javascript:;" tooltip-trigger tooltip-placement="bottom" tooltip="{{ 'group.add-file' | translate }}">
+					<input nv-file-select uploader="uploader" class="upload-file-input" id="uploadBtn" type="file" multiple>
+					<img src="images/sharebox/file-add-icon.png" width="15px" alt="Scoledge folder">
+				</a>
+
+				<a style="z-index:0" data-ng-click="displayCreateFolder()" href="javascript:;" class="m-r" tooltip-trigger tooltip-placement="bottom" tooltip="{{ 'group.add-folder' | translate }}">
+					<img src="images/sharebox/folder-add-icon.png" width="18px" alt="">
+				</a>
+
+				<a href="javascript:;" class="m-r search-icon">
+					<input data-ng-model="query.name" type="text" id="sharebox-search" placeholder="{{ 'group.search' | translate }}" autofocus>
+					<i class="fa fa-search" data-ng-click="searchOn()"></i>
+				</a>
+
+				<div class="clearfix"></div>
+
+			</div>
+
+			<!-- BreadCrumb -->
+			<span class="breadcrumb pull-left" data-ng-class="{'m-clear': f.id == -1 }" data-ng-repeat="f in path" data-ng-click="goToFolder(f)">
+				&nbsp;<i class="fa fa-chevron-right" ng-show="f.id !== -1"></i>&nbsp;
+				<a href="javascript:;">
+					{{f.name}}
+				</a>
+			</span>
+
+
+			<!-- Upload files queue -->
+			<table class="table" style="position:relative;z-index:80">
+				<tbody>
+					<tr ng-repeat="item in uploader.queue | orderBy: 'name' | limitTo: 5">
+						<td ng-show="uploader.isHTML5" style="cursor:pointer">
+							<div>
+								<span class="pull-left" style="margin-bottom:3px">{{ item.file.name | cut:false:19  }} </span>
+								<p class="progress-load pull-right" ng-class="{'load-done': item.progress == 100}">
+									{{ item.progress == 100 ? '' : item.progress + '%' }}
+									<i class="fa fa-check" data-ng-if="item.progress == 100" style="font-size:12px;line-height:2px"></i>
+								</p>
+							</div>
+
+							<div class="cleafix">
+								<div class="progress" style="margin-bottom: 0;height:10px;padding:2px;clear:both">
+									<div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }">
+									</div>
+								</div>
+							</div>
+						
+					
+				
+			</table>
+
+			<!-- File and directory browser -->
+			<table>
+
+				<!-- Back folder -->
+				<tr data-ng-if="parent.id != -1" class="folder" drop="folder" dropstyle="folder-hover">
+					<td class="icon" data-ng-click="back()">
+						<span class="fIcon sprite-folder-home"></span>
+					
+					<td class="name" data-ng-click="back()">
+						<span>{{ 'group.cta-back' | translate }}</span>
+					
+					<td class="size" data-ng-click="back()">
+						--
+					
+					<td class="settings">
+					
+				
+
+				<!-- Input for new folder -->
+				<tr data-ng-if="newFolder">
+					<td>
+						<span class="fIcon sprite-folder"></span>
+					
+					<td class="name">
+						<form data-ng-submit="createFolder()">
+							<input class="form-control" data-ng-blur="hideCreateFolder()" data-ng-model="newFolder.name" autofocus>
+						</form>
+					
+					<td class="size">
+						--
+					
+					<td class="settings">
+				
+
+				<!-- Dropbox -->
+				<tr data-ng-if="parent.id == -1" class="folder" style="opacity: 0.5">
+					<td class="icon">
+						<span class="fIcon sprite-folder-dropbox"></span>
+					
+					<td class="name">
+						<span>Dropbox</span>
+					
+					<td class="size">
+						--
+					
+					<td class="settings">
+					
+				
+
+				<!-- GDrive -->
+				<tr data-ng-if="parent.id == -1" class="folder" style="opacity: 0.5">
+					<td class="icon">
+						<span class="fIcon sprite-folder-gdrive"></span>
+					
+					<td class="name">
+						<span>Google Drive</span>
+					
+					<td class="size">
+						--
+					
+					<td class="settings">
+					
+				
+
+				<!-- All folders -->
+				<tr data-ng-repeat="folder in folders | filter:query | orderBy: 'name' track by folder.id" popover-template="documentPopover.templateUrl" popover-placement="left" popover-append-to-body="true" popover-trigger="mouseenter" drop="folder" drag="folder" dropstyle="folder-hover" id="{{$index}}">
+
+				<!-- Folder ICON -->
+				<td data-ng-click="loadFolder(folder)">
+					<span class="fIcon {{folder.icon}}"></span>
+				
+
+				<!-- Folder NAME -->
+				<td class="name" data-ng-click="loadFolder(folder)">
+					<span data-ng-if="folderEdited != folder">{{ folder.name | cut:false:24:'...' }}</span>
+					<form data-ng-if="folderEdited == folder" data-ng-submit="renameFolder()">
+						<input class="form-control" data-ng-click="$event.preventDefault();$event.stopPropagation()" data-ng-model="folderEdited.name" autofocus>
+					</form>
+				
+
+				<!-- Folder UPDATED AT -->
+				<td class="updated" data-ng-click="loadFolder(folder)">
+					{{ folder.updatedAt | date:'dd/MM/yyyy HH:mm'}}
+				
+
+				<!-- Folder SETTINGS -->
+				<td class="settings">
+					<span class="dropdown handin-settings" dropdown>
+						<a href class="dropdown-toggle" dropdown-toggle>
+							<i class="fa fa-cog"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="javascript:;" data-ng-click="displayRenameFolder(folder)"><i class="fa fa-edit"></i> &nbsp;{{ 'group.cta-rename' | translate }}</a>
+							</li>
+							<li data-ng-if="user.type == 96 || user.type == 89 || folder.owner.id == user.id">
+								<a href="javascript:;" data-ng-click="remove('Folder', folder)"><i class="fa fa-trash-o"></i> &nbsp;{{ 'group.cta-delete' | translate }}</a>
+							</li>
+						</ul>
+					</span>
+				
+			
+
+			<!-- Display files -->
+			<tr data-ng-repeat="file in files | orderBy: 'name' track by file.id" popover-template="'docInfosTemplate.html'" popover-append-to-body="true" popover-placement="left" popover-trigger="mouseenter" drag="file">
+
+			<!-- File ICON -->
+			<td data-ng-click="download(file)">
+				<span class="fileIcon {{file.icon}}"></span>
+			
+
+			<!-- File NAME -->
+			<td class="name" data-ng-click="download(file)">
+				<span data-ng-if="fileEdited != file">{{ file.name | cut:false:24:'...' }}</span>
+				<form data-ng-if="fileEdited == file" data-ng-submit="renameFile()">
+					<input class="form-control" data-ng-click="$event.preventDefault();$event.stopPropagation()" data-ng-model="fileEdited.name" autofocus>
+				</form>
+			
+
+			<!-- File UPDATED AT -->
+			<td class="updated" data-ng-click="download(file)">
+				{{ file.updatedAt | date:'dd/MM/yyyy HH:mm'}}
+			
+
+			<!-- SETTINGS -->
+			<td class="settings">
+				<span class="dropdown" dropdown>
+					<a href class="dropdown-toggle" dropdown-toggle>
+						<i class="fa fa-cog"></i>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="javascript:;" data-ng-click="displayRenameFile(file)">
+								<i class="fa fa-edit"></i> &nbsp;{{ 'group.cta-rename' | translate }}
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" data-ng-click="remove('File', file)">
+								<i class="fa fa-trash-o"></i> &nbsp;{{ 'group.cta-delete' | translate }}
+							</a>
+						</li>
+					</ul>
+				</span>
+			
+		
+	</table>
+
+	<script type="text/ng-template" id="docInfosTemplate.html">
+		  <div data-ng-if="file" class="sharebox-popover">
+
+		  	<div class="table-container">
+				<table class="table">
+					<tr>
+						<td>Nom</td>
+						<td class="bold">{{ file.name }}</td>
+					</tr>
+					<tr>
+						<td>Taille</td>
+						<td class="bold">{{ file.size }}</td>
+					</tr>
+					<tr>
+						<td>Crée le</td>
+						<td class="bold">{{file.createdAt | date:'dd/MM/yyyy HH:mm'}}</td>
+					</tr>
+					<tr>
+						<td>Modifié</td>
+						<td class="bold">{{file.updatedAt | date:'dd/MM/yyyy HH:mm'}}</td>
+					</tr>
+					<tr>
+						<td>Type</td>
+						<td class="bold displayName">{{ file.mimeType }}</td>
+					</tr>
+				</table>
+			</div>
+
+			<p class="popover-author">
+				<img ng-src="{{file.owner.avatar}}" alt="owner" class="avatar avatar-small" style="display: inline-block; margin-right: 5px"/>
+				<span class="displayName">{{file.owner.firstName}} {{file.owner.lastName}}</span>
+			</p>
+
+		  </div>
+
+			<!-- If its a folder -->
+			<div data-ng-if="folder" class="sharebox-popover">
+
+  		  	<div class="table-container">
+  				<table class="table">
+  					<tr>
+  						<td>Nom</td>
+  						<td class="bold">{{ folder.name }}</td>
+					</tr>
+  					<tr>
+  						<td>Crée le</td>
+  						<td class="bold">{{folder.createdAt | date:'dd/MM/yyyy HH:mm'}}</td>
+  					</tr>
+  					<tr>
+  						<td>Modifié</td>
+  						<td class="bold">{{folder.updatedAt | date:'dd/MM/yyyy HH:mm'}}</td>
+  					</tr>
+  				</table>
+  			</div>
+
+  			<p class="popover-author">
+  				<img ng-src="{{folder.owner.avatar}}" alt="owner" class="avatar avatar-small" style="display: inline-block; margin-right: 5px"/>
+  				<span class="displayName">{{folder.owner.firstName}} {{folder.owner.lastName}}</span>
+  			</p>
+
+  		  </div>
+
+	</script>
+</div>
+</div>
+</div>
+</div>

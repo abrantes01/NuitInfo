@@ -1,0 +1,11 @@
+<header class="sc-nav" ng-cloak data-ng-if="isUserLoaded()" data-ng-include="'views/partials/header.html'"></header>
+
+<!-- Main content loaded here -->
+<div class="channel">
+  <div ui-view class="ui-view-container animated fadeIn"></div>
+</div>
+
+
+<!-- Navigation -->
+<div id="navigation" ng-cloak data-ng-if="isUserLoaded()" data-ng-include="'views/partials/navigation.html'">
+</div>

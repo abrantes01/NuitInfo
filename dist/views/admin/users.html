@@ -1,0 +1,154 @@
+<div id="users">
+
+    <!-- Nb of users etc -->
+    <div class="col-md-12">
+        <table style="width: 100%; margin-bottom: 20px">
+            <td style="width: 330px">
+                <span class="font-thin">
+                    <strong class="h3">{{ nbAdmins }}</strong> administrateur<span data-ng-if="nbAdmins > 1">s</span>
+                </span>
+                &nbsp;
+                <span class="font-thin">
+                    <strong class="h3">{{ nbTeachers }}</strong> professeur<span data-ng-if="nbTeachers > 1">s</span>
+                </span>
+                &nbsp;
+                <span class="font-thin">
+                    <strong class="h3">{{ nbStudents }}</strong> étudiant<span data-ng-if="nbStudents > 1">s</span>
+                </span>
+
+            
+
+            <td style="text-align: center; padding-left: 5%">
+                <input type="text" data-ng-model="searchKeywords" data-ng-keyup="search()" class="input-sm form-control m-b-sm" placeholder="Recherchez...">
+            
+
+
+            <td>
+                <button class="btn btn-primary pull-right" data-ng-click="addUser()">Ajouter un utilisateur</button>
+                <button id="import-users" class="btn btn-success pull-right" data-ng-click="importUsers()">Importer...</button>
+            
+        </table>
+    </div>
+
+
+    <div class="spinner" data-ng-show="!isLoaded">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+
+
+    <!-- Users table -->
+
+    <div class="col-md-12">
+        <table id="admin-users" class="table table-bordered table-striped table-responsive" data-ng-show="isLoaded">
+            <thead>
+                <tr>
+                    <th style="width: 20%">
+                        Nom
+                        <span class="fa fa-chevron-up" data-ng-click="order('lastName')"></span>
+                        <span class="fa fa-chevron-down" data-ng-click="order('-lastName')"></span>
+                    
+                    <th style="width: 20%">
+                        Prénom
+                        <span class="fa fa-chevron-up" data-ng-click="order('firstName')"></span>
+                        <span class="fa fa-chevron-down" data-ng-click="order('-firstName')"></span>
+                    
+                    <th style="width:30%">
+                        Adresse e-mail scolaire
+                        <span class="fa fa-chevron-up" data-ng-click="order('schoolEmail')"></span>
+                        <span class="fa fa-chevron-down" data-ng-click="order('-schoolEmail')"></span>
+                    
+                    <th>
+                        Type
+                        <span class="fa fa-chevron-up" data-ng-click="order('type')"></span>
+                        <span class="fa fa-chevron-down" data-ng-click="order('-type')"></span>
+                    
+
+                    <th>Action
+                
+            
+
+            <tbody>
+                <tr data-ng-repeat="user in currentPageUsers">
+
+                    <td class="displayName" data-ng-click="edit(user)">
+                    <span data-ng-show="user != editedUser">{{user.lastName}}</span>
+                    <form data-ng-submit="doneEditing(user)" data-ng-show="user == editedUser">
+                    <input type="text" class="edit form-control displayName" data-ng-model="user.lastName" required data-ng-blur="reset(user)" data-user-focus="user == editedUser">
+                </form>
+            
+
+            <td class="displayName" data-ng-click="edit(user)">
+            <span data-ng-show="user != editedUser">{{user.firstName}}</span>
+            <form data-ng-submit="doneEditing(user)" data-ng-show="user == editedUser">
+            <input type="text" class="edit form-control displayName" data-ng-model="user.firstName" required data-ng-blur="reset(user)" data-user-focus="user == editedUser">
+        </form>
+    
+
+    <td data-ng-click="edit(user)">
+        <span data-ng-show="user != editedUser">{{user.schoolEmail}}</span>
+        <form data-ng-submit="doneEditing(user)" data-ng-show="user == editedUser">
+        <input type="text" class="edit form-control" data-ng-model="user.schoolEmail" required data-ng-blur="reset(user)" data-user-focus="user == editedUser">
+    </form>
+
+
+<td>
+    <!--<select data-ng-if="user.type == '96'"
+    class="form-control"
+    data-ng-model="user.type"
+    data-ng-change="doneEditing(user)">
+
+    <option selected="selected" value="96">Admin</option>
+    <option value="89">Professeur</option>
+    <option value="9">Étudiant</option>
+</select>
+
+<select data-ng-if="user.type == '89'"
+class="form-control"
+data-ng-model="user.type"
+data-ng-change="doneEditing(user)">
+
+<option value="96">Admin</option>
+<option selected="selected" value="89">Professeur</option>
+<option value="9">Étudiant</option>
+</select>-->
+
+<select class="form-control" data-ng-model="user.type" data-ng-change="doneEditing(user)">
+
+<option value="96" data-ng-selected="user.type == 96">Administrateur
+<option value="89" data-ng-selected="user.type == 89">Professeur
+<option value="9" data-ng-selected="user.type == 9">Étudiant
+</select>
+
+
+<td>
+    <a data-ng-if="user.blocked" href="javascript:;" tooltip="Débloquer" data-ng-click="block(user)" style="color:#c0392b" class="admin-ban m-l"><i class="fa fa-lock"></i></a>
+
+    <a data-ng-if="!user.blocked" href="javascript:;" tooltip="Bloquer" style="color:#27ae60" data-ng-click="block(user)" class="admin-ban m-l"><i class="fa fa-unlock"></i></a>
+
+
+
+
+</table>
+
+<footer class="table-footer m-t">
+    <div class="row">
+        <div class="col-md-6 m-t">
+            <span>
+                Afficher&nbsp;
+                <select class="form-control num-per-page" data-ng-model="numPerPage" data-ng-options="num for num in numPerPageOpt" data-ng-change="onNumPerPageChange()">
+            </select>
+            &nbsp;résultats par page
+        </span>
+    </div>
+    <div class="col-md-6 m-t pagination-container">
+
+        <pagination total-items="filteredUsers.length" ng-model="currentPage" previous-text="Précédent" next-text="Suivant" first-text="Début" last-text="Fin" max-size="4" class="pagination-sm" boundary-links="true" items-per-page="numPerPage" ng-change="select(currentPage)" rotate="false">
+        </pagination>
+
+    </div>
+</div>
+</footer>
+</div>
+
+</div>

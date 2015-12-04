@@ -1,0 +1,217 @@
+<style>
+    .ui-view-container{
+        overflow:hidden;
+    }
+</style>
+<div id="handin">
+    <div class="addon-body">
+
+        <div class="handin-wrapper">
+
+            <!-- Handin List -->
+            <div class="panel panel-list">
+                <div class="panel-heading">
+                    <div class="pull-left handin-title">
+                        <h3>{{ activeHandins }} {{ 'handin.active' | translate }}</h3>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <!-- Loader -->
+                <div class="spinner" data-ng-show="isLoading">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+
+                <div id="handin-main" data-ng-show="!isLoading">
+                    <div class="panel-body" data-ng-if="handins.length > 0">
+                        <ul class="handin-nav">
+
+                            <!-- ACTIVE HANDINS -->
+                            <li data-ng-repeat="h in handins | orderBy: 'endDate' track by h.id " data-ng-click="loadAssignments(h)" data-ng-if="!isPassed(h.endDate)" data-ng-class="{'active': h.id == currentItem.id }" style="width: 100%">
+                                <div class="handin-nav-wrapper">
+                                    <div class="col-md-2">
+                                        <div class="date-cal" data-ng-class="isPassed(h.endDate)">
+                                            <p>{{ h.endDate | amDateFormat: 'DD' }}</p>
+
+                                            <div class="date-bottom">
+                                                <p>{{ h.endDate | amDateFormat: 'MMM' }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="handin-row pull-left">
+
+                                        <div class="col-md-4">
+                                            <p data-ng-class="{'long-name': h.name.length > 45 }">{{ h.name }}</p>
+                                        </div>
+
+                                        <div class="col-md-4" style="color:#868687; font-weight: 300; text-align: center; line-height: 18px; margin-top: -7px">
+                                            Termine le {{ h.endDate | date:'dd/MM/yyyy à HH:mm'}}
+                                            (<b><span am-time-ago="h.endDate"></span></b>)
+
+                                        </div>
+
+
+                                        <div class="col-md-4" style="color:#868687; font-weight: 300; text-align: right">
+                                            <i class="fa fa-graduation-cap"></i>
+                                            {{ h.owner.firstName }} {{ h.owner.lastName }}
+                                        </div>
+
+                                        <div class="angle-hover">
+                                            <i class="fa fa-angle-right"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+
+
+                            <!-- PASSED HANDINS -->
+                            <li data-ng-repeat="h in handins | orderBy: '-endDate' track by h.id " data-ng-click="loadAssignments(h)" data-ng-if="isPassed(h.endDate)" data-ng-class="{'active': h.id == currentItem.id }" style="width: 100%">
+                                <div class="handin-nav-wrapper">
+                                    <div class="col-md-2">
+                                        <div class="date-cal" data-ng-class="isPassed(h.endDate)">
+                                            <p>{{ h.endDate | amDateFormat: 'DD' }}</p>
+
+                                            <div class="date-bottom">
+                                                <p>{{ h.endDate | amDateFormat: 'MMM' }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="handin-row pull-left">
+
+                                        <div class="col-md-4">
+                                            <p data-ng-class="{'long-name': h.name.length > 45 }">{{ h.name }}</p>
+                                        </div>
+
+                                        <div class="col-md-4" style="color:#868687; font-weight: 300; text-align: center">
+                                            Fini le {{ h.endDate | date:'dd/MM/yyyy à HH:mm'}}
+                                        </div>
+
+
+                                        <div class="col-md-4" style="color:#868687; font-weight: 300; text-align: right">
+                                            <i class="fa fa-graduation-cap"></i>
+                                            {{ h.owner.firstName }} {{ h.owner.lastName }}
+                                        </div>
+
+                                        <div class="angle-hover">
+                                            <i class="fa fa-angle-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="addon-right" id="handin-student">
+            <section class="panel" data-ng-if="handins && handins.length > 0">
+
+                <div class="panel-heading">
+                    <h4 class="pull-left"><strong>{{ files.length }}</strong> fichiers déposés</h4>
+
+                    <div class="h-s-cta pull-right">
+
+                      <a href="javascript:;" class="pull-right h-s-upload h-s-edit" data-ng-if="assignment.id && !assignment.isEditing" data-ng-click="edit()">
+                        Modifier
+                      </a>
+                        <a href="javascript:;" class="pull-right h-s-upload h-s-cancel" data-ng-if="assignment.isEditing" data-ng-click="cancel()">
+                            Annuler
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="panel-body">
+                    <ul class="h-s-files">
+                        <li data-ng-repeat="file in files" data-ng-click="download(file)" class="clearfix">
+                            <a href="javascript:;" class="pull-left">
+                                <svg width="18px" height="18px" viewBox="0 0 26 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+                                        <g id="Icon-Set" transform="translate(-154.000000, -99.000000)" fill="#4296c5">
+                                            <path d="M174,107 C172.896,107 172,106.104 172,105 L172,101 L178,107 L174,107 L174,107 Z M178,127 C178,128.104 177.104,129 176,129 L158,129 C156.896,129 156,128.104 156,127 L156,103 C156,101.896 156.896,101 158,101 L169.972,101 C169.954,103.395 170,105 170,105 C170,107.209 171.791,109 174,109 L178,109 L178,127 L178,127 Z M172,99 L172,99.028 C171.872,99.028 171.338,98.979 170,99 L158,99 C155.791,99 154,100.791 154,103 L154,127 C154,129.209 155.791,131 158,131 L176,131 C178.209,131 180,129.209 180,127 L180,109 L180,107 L172,99 L172,99 Z" id="Fill-221"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                                {{ file.name }}
+                            </a>
+
+                            <a href="javascript:;" class="pull-right h-delete-cta" style="border: 0; font-size: 1.6rem" data-ng-click="$event.stopPropagation();delete(file);" data-ng-show="assignment.isEditing">
+                                    <i class="fa fa-trash"></i>
+                            </a>
+                        </li>
+                        <li data-ng-repeat="item in uploader.queue | orderBy: 'name'">
+                            <a ng-show="uploader.isHTML5" href="javascript:;">
+                                <div>
+                                    <span class="pull-left" style="margin-bottom:3px">
+                                        <svg width="18px" height="18px" viewBox="0 0 26 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+                                                <g id="Icon-Set" transform="translate(-154.000000, -99.000000)" fill="#4296c5">
+                                                    <path d="M174,107 C172.896,107 172,106.104 172,105 L172,101 L178,107 L174,107 L174,107 Z M178,127 C178,128.104 177.104,129 176,129 L158,129 C156.896,129 156,128.104 156,127 L156,103 C156,101.896 156.896,101 158,101 L169.972,101 C169.954,103.395 170,105 170,105 C170,107.209 171.791,109 174,109 L178,109 L178,127 L178,127 Z M172,99 L172,99.028 C171.872,99.028 171.338,98.979 170,99 L158,99 C155.791,99 154,100.791 154,103 L154,127 C154,129.209 155.791,131 158,131 L176,131 C178.209,131 180,129.209 180,127 L180,109 L180,107 L172,99 L172,99 Z" id="Fill-221"></path>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                        {{ item.file.name | cut:false:35  }}
+                                    </span>
+                                    <p data-ng-show="uploader.isUploading" class="progress-load pull-right" ng-class="{'load-done': item.progress == 100}">
+                                        {{ item.progress == 100 ? '' : item.progress + '%' }}
+                                        <i class="fa fa-check" data-ng-if="item.progress == 100" style="font-size:12px;line-height:2px"></i>
+                                    </p>
+                                </div>
+
+                                <div class="cleafix" data-ng-show="uploader.isUploading">
+                                    <div class="progress" style="margin-bottom: 0;height:10px;padding:2px;clear:both">
+                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }">
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="clearfix"></div>
+
+                    <!-- Dropzone -->
+                    <div class="my-drop-zone" nv-file-over nv-file-drop uploader="uploader" data-ng-if="!assignment.id || assignment.isEditing">
+                        <p class="text-center">
+                            Glissez vos fichiers ou cliquez
+                            <a href="javascript:;">
+                                <input type="file" nv-file-select uploader="uploader" multiple>
+                                ici
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="h-s-l-cta">
+
+                        <button class="btn btn-success" data-ng-if="!assignment.id && uploader.queue.length > 0" data-ng-click="send()">
+                            Déposer le rendu
+                        </button>
+
+
+                        <button class="btn btn-primary" data-ng-if="assignment.id && assignment.isEditing" data-ng-click="save()">
+                            Enregistrer les modifications
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+            </section>
+
+
+        </div>
+    </div>
+</div>

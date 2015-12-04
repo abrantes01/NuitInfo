@@ -1,0 +1,190 @@
+<style>
+    body {
+        background: #F5F8FA;
+    }
+    .selectize-control.single .selectize-input:after{
+        right:8px;
+    }
+    .selectize-control.single .selectize-input{
+        padding: 6px 25px 6px 13px;
+    }
+
+</style>
+
+<div class="timeline-wrapper">
+    <div id="sc-scroll" class="wrapper">
+        <!-- TIMELINE -->
+        <div class="col-md-7" style="width:60%">
+
+            <section class="panel create-post" data-ng-if="user.type != 9">
+                <form data-ng-submit="createPost()">
+                    <div style="position: relative; display: block; border-bottom: 1px solid #edf1f2; margin-bottom: 5px">
+                        <textarea data-ng-model="post.content" placeholder="Partager une information aux étudiants..." class="form-control">
+                        </textarea>
+                    </div>
+                </form>
+
+                <div class="pull-left">
+                    <a href="javascript:;" class="upload-cta pull-left">
+                        <input type="file" class="upload-file" nv-file-select uploader="uploader" multiple>
+                        <i class="fa fa-camera"></i>
+                    </a>
+                    <div class="pull-left file-upload" data-ng-show="item.file" style="margin:4px 15px">
+                        <p style="font-size:1.2rem;margin-bottom:3px">
+                            {{ item.file.name }} - {{ item.file.size | sizeConverter }}
+                        </p>
+                        <p data-ng-show="uploader.isUploading" class="progress-load pull-right" ng-class="{'load-done': item.progress == 100}">
+                            {{ item.progress == 100 ? '' : item.progress + '%' }}
+                            <i class="fa fa-check" data-ng-if="item.progress == 100" style="font-size:12px;line-height:2px"></i>
+                        </p>
+
+                        <div class="clearfix">
+                            <div class="progress" style="margin-bottom: 0;height:10px;padding:2px;clear:both">
+                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="pull-right">
+                    <ui-select ng-model="selected.room" theme="selectize" class="pull-left" style="margin-bottom:4px;margin-right:4px">
+                        <ui-select-match placeholder="{{ 'handin.placeholder-classroom' | translate }}">{{$select.selected.name }}</ui-select-match>
+                        <ui-select-choices repeat="item in rooms | filter: $select.search">
+                            <div ng-bind-html="item.name | highlight: $select.search"></div>
+                            <small ng-bind-html="item.description | highlight: $select.search"></small>
+                        </ui-select-choices>
+                    </ui-select>
+
+                    <button style="border:none" class="btn btn-primary pull-left" data-ng-click="createPost()">Publier</button>
+
+                </div>
+                <div class="clearfix"></div>
+            </section>
+
+            <div class="spinner" data-ng-show="isLoading">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+
+
+            <section class="panel" data-ng-repeat="p in posts">
+
+                <div class="panel-body">
+
+                    <!-- Author -->
+                    <div class="clearfix">
+
+                        <!-- POST -->
+                        <!-- Remove message -->
+                        <i data-ng-if="p.type == 'post' && p.owner.id == user.id" data-ng-click="removePost(p)" class="fa fa-times remove"></i>
+                        <a data-ui-sref="app.profile({ id: (p.owner.id || p.userId) })" class="avatar">
+                            <img ng-src="{{ p.owner.avatar || p.avatar }}" class="img-circle">
+                        </a>
+
+                        <div class="clear">
+                            <small class="text-muted pull-right" am-time-ago="p.createdAt"></small>
+
+                            <a data-ui-sref="app.profile({ id: (p.owner.id || p.userId) })">
+                                <b class="displayName">{{ p.owner.fullName }}</b>
+                            </a>
+                            <small class="text-muted">
+                                <span data-ng-if="p.owner.type == 9">Étudiant</span>
+                                <span data-ng-if="p.owner.type == 89">Professeur</span>
+                                <span data-ng-if="p.owner.type == 96">Admininistrateur</span>
+
+                                à {{ user.school.name }}
+                            </small>
+                            <div class="publication-msg" data-ng-if="p.type == 'post'">
+                                <span data-ng-bind-html="urlify(p.content)"></span>
+
+                                <!-- If preview available, create a screenshot of the url -->
+                                <a data-ng-if="grabUrl(p.content)" class="preview-link" target="_blank" href="{{ grabUrl(p.content) }}">
+                                    <img ng-src="{{ getWebsitePreview(p.content) }}">
+                                </a>
+
+
+                                <!-- If post has a document -->
+                                <div data-ng-if="p.document" class="document-post">
+
+                                    <svg data-ng-if="!isPicture(p.document.mimeType)" class="file-svg" height="40px" viewBox="0 0 26 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                                        <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd" sketch:type="MSPage">
+                                            <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-154.000000, -99.000000)">
+                                                <path d="M174,107 C172.896,107 172,106.104 172,105 L172,101 L178,107 L174,107 L174,107 Z M178,127 C178,128.104 177.104,129 176,129 L158,129 C156.896,129 156,128.104 156,127 L156,103 C156,101.896 156.896,101 158,101 L169.972,101 C169.954,103.395 170,105 170,105 C170,107.209 171.791,109 174,109 L178,109 L178,127 L178,127 Z M172,99 L172,99.028 C171.872,99.028 171.338,98.979 170,99 L158,99 C155.791,99 154,100.791 154,103 L154,127 C154,129.209 155.791,131 158,131 L176,131 C178.209,131 180,129.209 180,127 L180,109 L180,107 L172,99 L172,99 Z" id="Fill-221" sketch:type="MSShapeGroup"></path>
+                                            </g>
+                                        </g>
+                                    </svg>
+
+
+                                    <a href="javascript:;" data-ng-if="isPicture(p.document.mimeType)" class="picture-preview" data-ng-class="{hoverimg: hover}" data-ng-click="hover = !hover">
+                                            <img ng-src="{{appUrl}}/download/{{p.document.id}}/{{token}}">
+                                    </a>
+
+
+                                    <p style="color:#797979">
+                                        {{ p.document.name }} - {{ p.document.size | sizeConverter }}
+                                    </p>
+
+                                    <a href="javascript:;" class="download-cta" data-ng-click="download(p.document)">
+                                        Télécharger
+                                    </a>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- IF IT'S A COURSE -->
+                        <div data-ng-if="p.type == 'course'">
+
+                            <div class="clearfix"></div>
+
+
+                            <a data-ui-sref="viewCourse({id: p.id})" target="_blank" class="course-post" ng-style="{'background-image': 'url(images/course/' + p.image + '/' + p.image + '_medium.jpg)'}">
+                                <div class="centered">
+                                    <h1>{{ p.name }}</h1>
+                                    <button class="btn btn-rounded check-course-button" data-ng-click="gotoCourse(post.course)">
+                                        Voir ce cours
+                                    </button>
+                                </div>
+                            </a>
+                        </div>
+
+
+                        <!-- IF IT'S A HANDIN -->
+                        <div data-ng-if="p.type == 'handin'" class="handin-post clear">
+
+                            <svg class="handin-svg" height="50px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                                <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd" sketch:type="MSPage">
+                                    <path d="M26.94,13.6193053 L22.957,20.3583053 L22.557,26.8703053 L3.583,16.1713053 L9.157,12.5773053 L13.141,5.83730526 C15.341,2.11630526 20.214,0.840305264 24.023,2.99030526 C27.834,5.13830526 29.14,9.89730526 26.94,13.6193053 L26.94,13.6193053 Z M10.58,25.7333053 C9.151,24.9273053 8.661,23.1433053 9.486,21.7473053 L14.661,24.6653053 C13.836,26.0613053 12.009,26.5383053 10.58,25.7333053 L10.58,25.7333053 Z M25.02,1.30430526 C20.257,-1.38069474 14.166,0.212305264 11.416,4.86530526 L7.433,11.6043053 L0,16.3983053 L7.762,20.7753053 C6.387,23.1013053 7.202,26.0753053 9.584,27.4173053 C11.966,28.7613053 15.011,27.9643053 16.386,25.6383053 L24.147,30.0153053 L24.682,21.3303053 L28.665,14.5913053 C31.415,9.93930526 29.783,3.99130526 25.02,1.30430526 L25.02,1.30430526 Z" id="Fill-66" sketch:type="MSShapeGroup" transform="translate(15.000432, 15.007653) scale(-1, 1) translate(-15.000432, -15.007653) "></path>
+                                </g>
+                            </svg>
+
+
+                            <p class="publication-msg">
+                                <h2>{{ p.name }}</h2><br>
+                                À rendre avant le <b>{{p.endDate | date:'dd/MM/yyyy à HH:mm'}}</b>
+                                <br>
+                                <a data-ng-if="user.type != 9" class="btn btn-rounded handin-button" data-ui-sref="app.handin({ handin: p })">
+                                Voir les rendus
+                            </a>
+                            <a data-ng-if="user.type == 9" class="btn btn-rounded handin-button" data-ui-sref="app.studentHandin({ handin: p })">
+                                Déposer mon devoir
+                            </a>
+                        </p></div>
+
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        <div class="col-md-5" style="position:fixed;right:1%;width:30%">
+            <a class="twitter-timeline" href="https://twitter.com/{{ user.school.twitterName }}" data-widget-id="{{ user.school.twitterID }}">Tweets de @{{ user.school.twitterName }}</a>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>

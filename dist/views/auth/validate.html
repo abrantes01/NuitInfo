@@ -1,0 +1,92 @@
+<div id="validate" style="overflow: scroll">
+    <h3>&nbsp;</h3>
+    <div class="modal-dialog" data-ng-if="noModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Finalisation de l'inscription</h3>
+            </div>
+
+            <div class="modal-body" data-ng-if="!token">
+                <p style="padding: 20px">
+                    Token invalide.<br><br>
+                    Vous pouvez demander une nouvelle invitation sur cette <a href="https://www.scoledge.com" style="text-decoration: underline">page</a>.
+                </p>
+            </div>
+
+            <form data-ng-if="token && percent < 85" data-ng-submit="register()">
+
+                <div class="modal-body">
+
+                    <div id="bar" class="progress progress-striped progress-sm active" role="progressbar">
+    					<div class="progress-bar progress-bar-success" style="width: {{percent}}%"></div>
+    				</div>
+
+                    <p class="msg">Votre adresse e-mail a bien été validée !<br>
+                    Vous pouvez maintenant compléter vos informations de profil.</p>
+
+                        <!-- FIRSTNAME -->
+                        <div class="form-group">
+                            <input class="form-control" type="text" data-ng-model="newUser.firstName" placeholder="Prénom">
+                        </div>
+
+                        <!-- LASTNAME -->
+                        <div class="form-group">
+                            <input class="form-control" type="text" data-ng-model="newUser.lastName" placeholder="Nom">
+                        </div>
+
+                        <!-- PASSWORD -->
+                        <div class="form-group">
+                            <input class="form-control" type="password" data-ng-model="newUser.password" placeholder="Mot de passe">
+                        </div>
+
+                        <!-- CONFIRM PASSWORD -->
+                        <div class="form-group">
+                            <input class="form-control" type="password" data-ng-model="newUser.password2" placeholder="Confirmer le mot de passe">
+                        </div>
+                </div>
+                <div class="modal-footer ng-scope">
+                    <button class="btn btn-primary" type="submit">Terminer l'inscription</button>
+                </div>
+            </form>
+
+            <form data-ng-if="token && percent >= 85" data-ng-submit="join()">
+
+                <div class="modal-body">
+
+                    <div id="bar" class="progress progress-striped progress-sm active" role="progressbar">
+    					<div class="progress-bar progress-bar-success" style="width: {{percent}}%"></div>
+    				</div>
+
+                    <h2 style="font-size: 1.5rem; margin-bottom: 20px">Rejoindre des classes existantes</h2>
+
+                    <div class="row" style="margin: 10px auto; font-size: 1.3rem">
+
+                        <div class="col-md-6" style="margin: 5px auto" data-ng-repeat="room in rooms">
+
+                            <label style="cursor: pointer" data-ng-click="$event.stopPropagation()">
+                                <input type="checkbox" name="checkbox" value="value" data-ng-model="classroom.selected" data-ng-change="select(room)">
+
+                                <span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+
+
+                                &nbsp;<b>{{ room.name }}</b><br>
+                                <span class="owner" style="margin-left: 23px">Crée par <b>{{ room.owners[0].fullName || 'Administrateur'}}</b></span>
+                            </label>
+
+                        </div>
+                        <div class="col-md-6" data-ng-if="selectedClassrooms.length == 0 && token.type != 9">
+                            <h2 style="margin-top: 15px;
+    font-size: 1.5rem; color: #d22b22; cursor: pointer" data-ng-click="createClassroom()">+ <span>Créer une nouvelle classe</span></h2>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                </div>
+                <div class="modal-footer ng-scope">
+                    <button class="btn btn-primary" type="submit">Rejoindre !</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

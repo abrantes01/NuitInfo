@@ -1,0 +1,1023 @@
+
+
+body, html {
+    height:100%;
+    width:100%;
+    font-size: 62.5%;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', 'Arial';
+    /*-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;*/
+}
+
+#app{
+  height:100%;
+  width:100%;
+  overflow-y: scroll;
+}
+
+h1 {
+    font-size: 1.6rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+p {
+  font-size: 1.4rem;
+}
+
+a {
+  color: #444;
+  text-decoration:none;
+}
+a:hover{
+  text-decoration: none;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #fafbfc;
+}
+
+.btn-comments {
+    cursor: pointer;
+    margin: auto;
+    display: block;
+    padding: 10px 13px;
+    font-size: 2.8rem;
+    border-radius: 50px;
+    border: 1px solid lightgrey;
+    outline: 0;
+    background-color: white;
+    color: rgb(112, 124, 131);
+    position: absolute;
+    bottom: 10px;
+    right: 50px;
+}
+
+.x{
+  float: right;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background: #CCC;
+  border-radius: 2px;
+  transition: all .1s ease-out;
+  cursor: pointer;
+  -webkit-transition-duration: 0.1s;
+  transition-duration: 0.1s;
+  margin: -8px -8px 0px 0px;
+}
+.x.medium b {
+  border: solid 10px rgba(255,255,255,0);
+}
+.x b:nth-child(1) {
+  border-top-color: #FFF;
+  top: -2px;
+}
+.x b:nth-child(2) {
+  border-left-color: #FFF;
+  left: -2px;
+}
+.x b:nth-child(3) {
+  border-bottom-color: #FFF;
+  bottom: -2px;
+}
+.x b:nth-child(4) {
+  border-right-color: #FFF;
+  right: -2px;
+}
+.x.shift:hover {
+  background: #BB3333;
+}
+
+.x b {
+  display: block;
+  position: absolute;
+  height: 0;
+  width: 0;
+  padding: 0;
+  margin: 0;
+}
+.x.medium {
+  width: 20px;
+  height: 20px;
+}
+
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.clearfix{
+    clear:both;
+}
+.avatar {
+    border-radius: 3px;
+    width: 64px;
+    height: 64px;
+}
+.avatar-thumb{
+  width:40px;
+  height:40px;
+}
+.avatar-xs-medium{
+    width: 42px;
+    height: 42px;
+}
+.avatar-medium {
+    width: 48px;
+    height: 48px;
+}
+
+.avatar-small {
+    width: 32px;
+    height: 32px;
+}
+
+.avatar-xs-small{
+    width:24px;
+    height:24px;
+}
+
+
+.panel {
+    box-shadow: none !important;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:   $placeholder;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    $placeholder;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    $placeholder;
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    $placeholder;
+}
+
+
+.m-r{
+  margin-right:10px;
+}
+
+.tooltip {
+  z-index: 9999 !important;
+}
+
+.displayName {
+  text-transform: capitalize;
+}
+
+/*.displayOnline{
+  color:#5BA285;
+}*/
+.m-t {
+    margin-top: 10px;
+}
+
+.m-b {
+    margin-bottom: 10px;
+}
+
+/* Bootstrap col */
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {
+  float: left;
+}
+
+.col-md-6 {
+    width: 50%;
+}
+
+.col-md-4{
+    width: 30%;
+}
+
+.col-md-3{
+  width: 25%;
+}
+.row{
+  margin-left:-15px;
+  margin-right:-15px;
+}
+
+.col-md-7 {
+    width: 58.333333333333336%;
+}
+
+.col-md-8{
+  width:66.66666667%;
+}
+.col-md-12{
+  width:100%;
+}
+
+.form-control {
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+textarea.form-control {
+    padding: 10px 12px;
+    height: auto;
+    line-height: 20px;
+    font-size: 1.4rem;
+}
+
+/* BUTTONS */
+.btn{
+  padding:7px 15px;
+  border-radius:3px;
+  color:white;
+  font-weight:300;
+  font-size:1.6rem;
+  border:none;
+  cursor:pointer;
+  font-family:'Source Sans Pro';
+}
+.btn-success{
+  background: $green;
+}
+
+
+
+/* MODAL */
+.modal-dialog {
+    .modal-content {
+        .modal-title {
+            font-size: 1.7rem;
+            font-weight: 400;
+        }
+    }
+}
+
+/* DROPDOWN */
+.dropdown-menu > li > a {
+  text-decoration: none;
+}
+
+
+
+/* LABEL */
+label {
+    font-size: 1.3rem;
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 7px;
+}
+
+label.radio-inline {
+    margin-right: 25px;
+}
+
+
+/* BADGE */
+.badge {
+  display: inline-block;
+  line-height: 18px;
+  background-color: #D22B22 !important;
+  border-radius: 8px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  width: 18px;
+  font-size: 11px;
+  font-weight: 300;
+  color: white;
+  height: 18px;
+}
+
+.pull-right {
+    float: right;
+}
+
+
+.text-center{
+  text-align:center;
+}
+
+.ui-view-container{
+  width: 100%;
+  height:100%;
+}
+
+
+
+
+
+
+/* Progress bar */
+@-webkit-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+@-o-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+@keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+.progress {
+  height: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+          box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+}
+.progress-bar {
+  float: left;
+  width: 0;
+  height: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+  text-align: center;
+  background-color: #428bca;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+          box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+  -webkit-transition: width .6s ease;
+       -o-transition: width .6s ease;
+          transition: width .6s ease;
+}
+.progress-striped .progress-bar,
+.progress-bar-striped {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image:      -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image:         linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  -webkit-background-size: 40px 40px;
+          background-size: 40px 40px;
+}
+.progress.active .progress-bar,
+.progress-bar.active {
+  -webkit-animation: progress-bar-stripes 2s linear infinite;
+       -o-animation: progress-bar-stripes 2s linear infinite;
+          animation: progress-bar-stripes 2s linear infinite;
+}
+.progress-bar-success {
+  background-color: #5cb85c;
+}
+.progress-striped .progress-bar-success {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image:      -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image:         linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+}
+.progress-bar-info {
+  background-color: #5bc0de;
+}
+.progress-striped .progress-bar-info {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image:      -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image:         linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+}
+.progress-bar-warning {
+  background-color: #f0ad4e;
+}
+.progress-striped .progress-bar-warning {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image:      -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image:         linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+}
+.progress-bar-danger {
+  background-color: #d9534f;
+}
+.progress-striped .progress-bar-danger {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image:      -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image:         linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+}
+
+
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-radius: 3px;
+}
+
+
+.addon-svg{
+  fill:#93A7BD;
+  vertical-align:middle;
+  margin-top:-5px;
+  margin-right:2px;
+}
+
+
+.addon-svg-online{
+  fill:#5BA285;
+  vertical-align:middle;
+  margin-top:-5px;
+  margin-right:2px;
+}
+
+.timeline-svg{
+  margin-top:-4px;
+  margin-right:-0.5px;
+}
+.handin-student-svg{
+  margin-right:0.03%;margin-top:-4px;
+}
+.calendar-icon-svg{
+  margin-right:1px;
+}
+.teacher-abs-svg{
+  margin-right: 1px;
+  margin-top: -5px;
+  margin-left: -1px;
+}
+
+
+
+
+// Tags input
+.tags {
+        input {
+            width: 100% !important;
+            height: 34px;
+            padding: 6px 12px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        }
+}
+
+
+input:focus {
+    border: 1px solid #4296c5;
+}
+
+
+
+
+// DATE PICKER
+
+datepicker a, [datepicker] a, .datepicker a{
+  color:inherit;
+  text-decoration:none;
+}
+datepicker a:hover, [datepicker] a:hover, .datepicker a:hover{
+  text-decoration:none;
+}
+datepicker select, datepicker select:focus, datepicker select:hover,
+.datepicker select, .datepicker select:focus, .datepicker select:hover,
+[datepicker] select, [datepicker] select:focus, [datepicker] select:hover{
+  width:100%;
+  overflow: hidden;
+  background:none;
+  color:#fff;
+  background-color: #138EFA;
+  border-radius:2px;
+  border: 0;
+  margin-top:5px;
+}
+datepicker, .datepicker, [datepicker],
+._720kb-datepicker-calendar-header,
+._720kb-datepicker-calendar-body,
+._720kb-datepicker-calendar-days-header,
+._720kb-datepicker-calendar-years-pagination-pages {
+  font-family: Helvetica Neue;
+  font-size: 13.5px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  float: left;
+  clear: right;
+  position: relative;
+}
+._720kb-datepicker-calendar {
+  background: white;
+  color: #333;
+  position: absolute;
+  z-index: 999;
+  min-width: 220px;
+  margin: 0 auto;
+  width: 101%;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+  visibility: hidden;
+  overflow:hidden;
+  margin-left:-0.5%;
+  padding: 0 0 2% 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+._720kb-datepicker-calendar._720kb-datepicker-open {
+  visibility: visible;
+}
+._720kb-datepicker-calendar-header {
+  text-align: center;
+  font-size: 15px;
+  line-height: 30px;
+}
+._720kb-datepicker-calendar-header:nth-child(odd) {
+  background: #4D90C4;
+}
+._720kb-datepicker-calendar-header:nth-child(even) {
+  background: #7BC6FC;
+}
+._720kb-datepicker-calendar-header-left,
+._720kb-datepicker-calendar-header-middle,
+._720kb-datepicker-calendar-header-right {
+  width: 15%;
+  float: left;
+}
+._720kb-datepicker-calendar-header-middle {
+  width: 70%;
+}
+
+._720kb-datepicker-calendar-header-closed-pagination::after {
+  content: " \25BE";
+}
+
+._720kb-datepicker-calendar-header-opened-pagination::after {
+  content: " \25F9";
+}
+
+._720kb-datepicker-calendar-body {
+  width: 96%;
+  margin: 2%;
+  text-align: center;
+}
+._720kb-datepicker-calendar-day {
+  cursor: pointer;
+  font-size: 12.5px;
+  width: 12.2%;
+  margin:5px 1%;
+  padding: 1.5% 0;
+  float: left;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+}
+._720kb-datepicker-calendar-day:hover,._720kb-datepicker-calendar-day._720kb-datepicker-active {
+  background: rgba(0, 0, 0, 0.03);
+}
+._720kb-datepicker-calendar-header a, ._720kb-datepicker-calendar-header a:hover {
+  text-decoration:none;
+  padding:3% 9% 4% 9%;
+  font-size: 13.5px;
+  color:rgba(0, 0, 0, 0.55);
+  font-weight: bold;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+._720kb-datepicker-calendar-header a:hover {
+  color:rgba(0, 0, 0, 0.9);
+  background: rgba(255, 255, 255, 0.45);
+}
+._720kb-datepicker-calendar-month {
+  color:#fff;
+  text-transform:capitalize;
+}
+._720kb-datepicker-calendar-month span {
+  font-size: 13px;
+  color:rgba(0, 0, 0, 0.4);
+}
+._720kb-datepicker-calendar-month a span  i {
+  font-style: normal;
+  font-size:15px;
+}
+._720kb-datepicker-calendar-month a, ._720kb-datepicker-calendar-month a:hover {
+  padding: 3px;
+  margin-left:1%;
+}
+._720kb-datepicker-calendar-years-pagination{
+  padding:2% 0 0 0;
+  float:left;
+  clear: right;
+  width: 100%;
+}
+._720kb-datepicker-calendar-years-pagination a, ._720kb-datepicker-calendar-years-pagination a:hover {
+  font-size:12px;
+  padding:0 7px;
+  font-weight: normal;
+  margin:3px 1% 0 1%;
+  line-height: 20px;
+  display: inline-block;
+}
+._720kb-datepicker-calendar-years-pagination a._720kb-datepicker-active {
+  color:rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.45);
+}
+._720kb-datepicker-calendar-years-pagination-pages a,._720kb-datepicker-calendar-years-pagination-pages a:hover{
+  padding:5px 10px;
+}
+._720kb-datepicker-calendar-days-header{
+  max-width: 100%;
+  margin:0 auto;
+  padding:0 2% 0 2%;
+  background: rgba(19, 142, 250, 0.08);
+  border-bottom:1px solid rgba(0,0,0,0.02);
+}
+._720kb-datepicker-calendar-days-header div{
+  width: 13.2%;
+  font-weight: 500;
+  font-size: 11.5px;
+  padding:4px 0.5%;
+  float:left;
+  text-align: center;
+  color:rgba(0,0,0,0.7);
+}
+._720kb-datepicker-calendar-days
+._720kb-datepicker-default-button{
+  font-size: 18.5px;
+  position: relative;
+  bottom:-0.5px;
+}
+._720kb-datepicker-calendar-header-middle._720kb-datepicker-mobile-item{
+  width:95%;
+  float:none;
+  margin:0 auto;
+}
+._720kb-datepicker-item-hidden{
+  visibility:hidden;
+}
+._720kb-datepicker-calendar-day._720kb-datepicker-disabled,
+._720kb-datepicker-calendar-day._720kb-datepicker-disabled:hover,
+._720kb-datepicker-calendar-years-pagination a._720kb-datepicker-disabled,
+._720kb-datepicker-calendar-years-pagination a._720kb-datepicker-disabled:hover,
+._720kb-datepicker-calendar-years-pagination a._720kb-datepicker-active._720kb-datepicker-disabled,
+._720kb-datepicker-calendar-years-pagination a._720kb-datepicker-active._720kb-datepicker-disabled:hover{
+  color:rgba(0,0,0,0.2);
+  background: rgba(25,2,0,0.02);
+  cursor: default;
+}
+
+
+// Date Time Picker
+
+.datetimepicker-wrapper {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.datetimepicker-wrapper > input {
+  margin-bottom: 0 !important;
+  width: 130px;
+}
+
+.datetimepicker-wrapper [ng-model=hours],
+.datetimepicker-wrapper [ng-model=minutes] {
+  width: 46px !important;
+}
+
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+
+// Home multi select box
+
+
+/*
+ * Don't modify things marked with ! - unless you know what you're doing
+ */
+
+/* ! vertical layout */
+.multiSelect .vertical {
+  float: none;
+}
+
+/* ! horizontal layout */
+.multiSelect .horizontal:not(.multiSelectGroup) {
+  float: left;
+}
+
+/* ! create a "row" */
+.multiSelect .line {
+  padding:  2px 0px 4px 0px;
+  max-height: 30px;
+  overflow: hidden;
+  box-sizing: content-box;
+}
+
+/* ! create a "column" */
+.multiSelect .acol {
+  display: inline-block;
+  min-width: 12px;
+}
+
+/* ! */
+.multiSelect .inlineBlock {
+  display: inline-block;
+}
+
+/* the multiselect button */
+.multiSelect > button {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #c6c6c6;
+  padding: 1px 8px 1px 8px;
+  font-size: 14px;
+  min-height : 32px !important;
+  border-radius: 4px;
+  color: #555;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  white-space:normal;
+  background-color: #fff;
+  background-image: linear-gradient(#fff, #f7f7f7);
+}
+
+
+/* button: disabled */
+.multiSelect > button:disabled {
+  background-image: linear-gradient(#fff, #fff);
+  border: 1px solid #ddd;
+  color: #999;
+}
+
+/* button: clicked */
+.multiSelect .buttonClicked {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* labels on the button */
+.multiSelect .buttonLabel {
+  display: inline-block;
+  padding: 5px 0px 5px 0px;
+  font-size:1.2rem;
+}
+
+/* downward pointing arrow */
+.multiSelect .caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin: 0px 0px 1px 12px  !important;
+  vertical-align: middle;
+  border-top: 4px solid #333;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  border-bottom: 0 dotted;
+}
+
+/* the main checkboxes and helper layer */
+.multiSelect .checkboxLayer {
+  background-color: #fff;
+  position: absolute;
+  z-index: 999;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  min-width:278px;
+  display: none !important;
+}
+
+/* container of helper elements */
+.multiSelect .helperContainer {
+  border-bottom: 1px solid #ddd;
+  padding: 8px 8px 0px 8px;
+}
+
+/* helper buttons (select all, none, reset); */
+.multiSelect .helperButton {
+  display: inline;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  height: 26px;
+  font-size: 13px;
+  border-radius: 2px;
+  color: #666;
+  background-color: #f1f1f1;
+  line-height: 1.6;
+  margin: 0px 0px 8px 0px;
+}
+
+.multiSelect .helperButton.reset{
+  float: right;
+}
+
+.multiSelect .helperButton:not( .reset ) {
+  margin-right: 4px;
+}
+
+/* clear button */
+.multiSelect .clearButton {
+  position: absolute;
+  display: inline;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  height: 22px;
+  width: 22px;
+  font-size: 13px;
+  border-radius: 2px;
+  color: #666;
+  background-color: #f1f1f1;
+  line-height: 1.4;
+  right : 2px;
+  top: 4px;
+}
+
+/* filter */
+.multiSelect .inputFilter {
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  height: 26px;
+  font-size: 14px;
+  width:100%;
+  padding-left:7px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  color: #888;
+  margin: 0px 0px 8px 0px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+/* helper elements on hover & focus */
+.multiSelect .clearButton:hover,
+.multiSelect .helperButton:hover {
+  border: 1px solid #ccc;
+  color: #999;
+  background-color: #f4f4f4;
+}
+.multiSelect .helperButton:disabled {
+  color: #ccc;
+  border: 1px solid #ddd;
+}
+
+.multiSelect .clearButton:focus,
+.multiSelect .helperButton:focus,
+.multiSelect .inputFilter:focus {
+  border: 1px solid #66AFE9 !important;
+  outline: 0;
+  -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,.065), 0 0 5px rgba(102, 175, 233, .6) !important;
+  box-shadow: inset 0 0 1px rgba(0,0,0,.065), 0 0 5px rgba(102, 175, 233, .6) !important;
+}
+
+/* container of multi select items */
+.multiSelect .checkBoxContainer {
+  display: block;
+  padding: 8px;
+  overflow: hidden;
+}
+
+/* ! to show / hide the checkbox layer above */
+.multiSelect .show {
+  display: block !important;
+}
+
+/* item labels */
+.multiSelect .multiSelectItem {
+  display: block;
+  padding: 3px;
+  color: #444;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  position: relative;
+  min-width:278px;
+  min-height: 27px;
+  border-radius:3px;
+  margin-bottom:3px;
+}
+
+/* Styling on selected items */
+.multiSelect .multiSelectItem:not(.multiSelectGroup).selected
+{
+  background-color:#4D90C4;
+  color: white;
+  cursor: pointer;
+}
+
+.multiSelect .multiSelectItem .acol label {
+  display: inline-block;
+  padding-right: 30px;
+  margin: 0px;
+  font-weight: normal;
+  line-height: normal;
+}
+
+/* item labels focus on mouse hover */
+.multiSelect .multiSelectItem:hover,
+.multiSelect .multiSelectGroup:hover {
+  cursor: pointer;
+  background-color:#EBECEC;
+}
+
+
+/* change mouse pointer into the pointing finger */
+.multiSelect .multiSelectItem span:hover,
+.multiSelect .multiSelectGroup span:hover
+{
+  cursor: pointer;
+}
+
+/* ! group labels */
+.multiSelect .multiSelectGroup {
+  display: block;
+  clear: both;
+}
+
+/* right-align the tick mark (&#10004;) */
+.multiSelect .tickMark {
+  display:inline-block;
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  font-size: 10px;
+}
+
+/* hide the original HTML checkbox away */
+.multiSelect .checkbox {
+  color: #ddd !important;
+  position: absolute;
+  left: -9999px;
+  cursor: pointer;
+}
+
+/* checkboxes currently disabled */
+.multiSelect .disabled,
+.multiSelect .disabled:hover,
+.multiSelect .disabled label input:hover ~ span {
+  color: #c4c4c4 !important;
+  cursor: not-allowed !important;
+}
+
+/* If you use images in button / checkbox label, you might want to change the image style here. */
+.multiSelect img {
+  vertical-align: middle;
+  margin-bottom:0px;
+  max-height: 22px;
+  max-width:22px;
+}
+
+
+#profile {
+  @media screen and (max-width: 740px) {
+    display:none;
+  }
+}

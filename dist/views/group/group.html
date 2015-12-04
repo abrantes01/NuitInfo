@@ -1,0 +1,113 @@
+<div class="channel-content" uploader="uploader" nv-file-drop nv-file-select="" nv-file-over>
+
+<div class="spinner" data-ng-show="isLoading">
+  <div class="double-bounce1"></div>
+  <div class="double-bounce2"></div>
+</div>
+
+
+<!-- Progress bar status -->
+<div class="progress-upload" data-ng-if="isUploading">
+    <div class="progress-bar">
+        <p class="chat-upload-txt">
+            {{ item.file.name | cut:true:25 }} &nbsp;
+        </p>
+        <p class="chat-upload-progress">
+            {{ item.progress == 100 ? '' : item.progress + '%' }}
+            <i class="fa fa-check" data-ng-show="item.progress == 100"></i>
+        </p>
+        <div class="progress-green" ng-style="{'width': item.progress + '%' }"></div>
+    </div>
+</div>
+
+<!-- Cloud upload image -->
+<div class="cloud-upload">
+    <img src="images/classroom/cloud-upload-icon.svg" alt="">
+    <p class="cloud-upload-txt"> {{ 'group.drag-text' | translate }}</p>
+</div>
+
+<!-- Messages -->
+<div class="channel-msg" data-ng-show="!isLoading">
+    <div>
+        <div id="sc-scroll">
+            <div href="javascript:;" class="msg-item" data-ng-repeat="message in messages | orderBy: 'createdAt' track by $index">
+
+                <a class="thumb-sm pull-left" data-ui-sref="app.profile({ id: message.from.id })">
+                    <img ng-src="{{ message.from.avatar }}" alt="" class="avatar">
+                </a>
+
+                <span class="clear">
+                    <span class="fullname">
+                        <a data-ui-sref="app.profile({ id: message.from.id })">{{ message.from.fullName }}</a>
+
+                        <!-- If message has been edited -->
+                        <span data-ng-if="message.updatedAt != message.createdAt" class="msg-date">(modifié)</span>
+
+                        <!-- Ago -->
+                        <span class="msg-date" am-time-ago="message.createdAt"> </span>
+                    </span>
+
+
+                    <!-- Remove message -->
+                    <i data-ng-click="remove(message)" data-ng-if="(isMessageOwner(message) && message != messageEdited) || user.type == 96" class="fa fa-times remove"></i>
+
+                    <!-- Edit message -->
+                    <i data-ng-click="displayEditMessage(message)" data-ng-if="!message.document && isMessageOwner(message) && message != messageEdited" class="fa fa-pencil edit"></i>
+
+
+                    <!-- NORMAL TEXT -->
+                    <div data-ng-if="!message.document" class="clear msg-content">
+
+                        <p data-ng-if="message != messageEdited" data-ng-bind-html="urlify(message.content)"></p>
+
+                        <!-- If editing -->
+                        <form data-ng-if="message == messageEdited" data-ng-submit="editMessage()">
+                            <input class="form-control" data-ng-model="messageEdited.content" data-ng-blur="hideEditMessage()" autofocus>
+                        </form>
+                        <!-- If there is a link we can preview -->
+                        <a data-ng-if="grabUrl(message.content)" target="_blank" class="url" href="{{ grabUrl(message.content) }}">
+
+                        <img ng-src="{{ getWebsitePreview(message.content) }}">
+                    </a>
+                </div>
+
+                <!-- DOCUMENT -->
+                <p data-ng-if="message.document && !isPicture(message.document.mimeType)" class="clear msg-content msg-document">
+                    <span class="fileIcon sprite-image" data-ng-click="download(message.document)"></span>
+                    <span data-ng-click="download(message.document)" style="text-decoration:underline">{{ message.content }}</span>
+
+                    <span class="save-file" data-ng-if="!message.document.folder" data-ng-click="saveFile(message.document)" tooltip="{{ 'group.save-tooltip' | translate }}" tooltip-trigger>
+                        <i class="fa fa-mail-forward"></i> &nbsp;{{ 'group.save' | translate }}
+                    </span>
+                </p>
+
+                <p data-ng-if="message.document && isPicture(message.document.mimeType)">
+                    <img data-ng-click="download(message.document)" class="msg-preview" ng-src="{{appUrl}}/download/{{message.document.id}}/{{token}}">
+                    <br>
+                    <span class="save-file" style="cursor: pointer; margin-top: 5px" data-ng-if="!message.document.folder" data-ng-click="saveFile(message.document)" tooltip="{{ 'group.save-tooltip' | translate }}" tooltip-trigger>
+                        <i class="fa fa-mail-forward"></i> &nbsp;{{ 'group.save' | translate }}
+                    </span>
+                </p>
+            </span>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Messages -->
+
+<!-- Sharebox -->
+<div id="tabs">
+    <div data-ng-include="'views/sharebox/index.html'"></div>
+    <div data-ng-include="'views/members/index.html'"></div>
+</div>
+<!-- /Sharebox -->
+
+
+
+<!-- Sending out a message -->
+<div class="channel-footer test">
+    <form action="javascript:;" data-ng-submit="newMsg()" style="float: left">
+        <textarea name="message" id="message" rows="1" placeholder="Votre message..." data-ng-model="message.content"></textarea>
+    </form>
+</div>
+</div>

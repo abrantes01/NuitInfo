@@ -1,0 +1,185 @@
+<style>#app{overflow:scroll;}</style>
+<div id="view-display" ng-style="{'background-image': 'url(images/course/' + course.image + '/' + course.image + '_large.jpg)'}">
+
+    <a data-ng-if="user.type != 9 && user.school.id == course.school.id" data-ui-sref="app.course({id: course.id})" class="edit-course">
+        <i class="fa fa-edit"></i>
+        Éditer
+    </a>
+
+    <div class="centered">
+        <h1>{{ course.name }}</h1>
+        <h2>
+            <i class="fa fa-clock-o"></i>
+            <span>Modifié le {{ course.updatedAt | date:'dd/MM/yyyy à HH:mm' }}</span>
+        </h2>
+    </div>
+
+</div>
+
+
+
+<div class="course-main-content">
+
+    <div id="main-content"></div>
+
+    <div id="ressources">
+
+        <div class="panel" data-ng-if="(course.documents|filter: { exercise: false }).length > 0">
+            <!-- PANEL TITLE -->
+            <div class="panel-heading">
+                <a href="javascript:;">
+                    Support de cours
+                    ({{(course.documents|filter: { exercise: false }).length}})
+                </a>
+            </div>
+            <br>
+
+            <table class="table table-striped">
+                <tbody>
+
+                    <!-- List of all content files -->
+                    <tr>
+                        <th>Nom
+                        <th>Taille du fichier
+                        <th>Dernière modification
+                    
+
+                    <tr data-ng-repeat="file in course.documents | orderBy: '-updatedAt'" data-ng-if="!file.exercise" data-ng-click="download(file)">
+                        <td class="ng-binding">
+                            <svg width="22px" height="28px" viewBox="0 0 26 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+
+                                <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd" sketch:type="MSPage" fill="#5695C7">
+                                    <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-154.000000, -99.000000)">
+                                        <path d="M174,107 C172.896,107 172,106.104 172,105 L172,101 L178,107 L174,107 L174,107 Z M178,127 C178,128.104 177.104,129 176,129 L158,129 C156.896,129 156,128.104 156,127 L156,103 C156,101.896 156.896,101 158,101 L169.972,101 C169.954,103.395 170,105 170,105 C170,107.209 171.791,109 174,109 L178,109 L178,127 L178,127 Z M172,99 L172,99.028 C171.872,99.028 171.338,98.979 170,99 L158,99 C155.791,99 154,100.791 154,103 L154,127 C154,129.209 155.791,131 158,131 L176,131 C178.209,131 180,129.209 180,127 L180,109 L180,107 L172,99 L172,99 Z" id="Fill-221" sketch:type="MSShapeGroup"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                            <span class="file-name">{{ file.name }}</span>
+                        
+
+                        <td class="course-file-size">
+                            {{ file.size | sizeConverter}}
+                        
+                        <td class="file-date">
+                            Ajouté <span am-time-ago="file.createdAt"></span>
+                        
+                        <td>
+                            <button class="pull-right btn-course-download">
+                                Télécharger
+                            </button>
+                        
+                    
+                
+            </table>
+        </div>
+
+        <br>
+
+        <div class="panel" data-ng-if="(course.documents|filter: { exercise: true }).length > 0">
+
+            <!-- PANEL TITLE -->
+            <div class="panel-heading">
+                <a href="javascript:;" data-ng-click="expand.exercises = !expand.exercises">
+                    Exercices
+                    ({{(course.documents|filter: { exercise: true }).length}})
+                </a>
+            </div>
+            <br>
+
+            <table class="table table-striped">
+                <tbody>
+
+                    <!-- List of all exercise files -->
+                    <tr>
+                        <th>Nom
+                        <th>Taille du fichier
+                        <th>Dernière modification
+                    
+
+                    <tr data-ng-repeat="file in course.documents | orderBy: '-updatedAt'" data-ng-if="file.exercise" data-ng-click="download(file)">
+                        <td class="ng-binding">
+                            <svg width="22px" height="28px" viewBox="0 0 26 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+
+                                <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd" sketch:type="MSPage" fill="#5BC28F">
+                                    <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-154.000000, -99.000000)">
+                                        <path d="M174,107 C172.896,107 172,106.104 172,105 L172,101 L178,107 L174,107 L174,107 Z M178,127 C178,128.104 177.104,129 176,129 L158,129 C156.896,129 156,128.104 156,127 L156,103 C156,101.896 156.896,101 158,101 L169.972,101 C169.954,103.395 170,105 170,105 C170,107.209 171.791,109 174,109 L178,109 L178,127 L178,127 Z M172,99 L172,99.028 C171.872,99.028 171.338,98.979 170,99 L158,99 C155.791,99 154,100.791 154,103 L154,127 C154,129.209 155.791,131 158,131 L176,131 C178.209,131 180,129.209 180,127 L180,109 L180,107 L172,99 L172,99 Z" id="Fill-221" sketch:type="MSShapeGroup"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                            <span class="file-name">{{ file.name }}</span>
+                        
+                        <td class="course-file-size">
+                            {{ file.size | sizeConverter }}
+                        
+                        <td class="file-date">
+                            Ajouté <span am-time-ago="file.createdAt"></span>
+                        
+                        <td>
+                            <button class="pull-right btn-course-download">
+                                Télécharger
+                            </button>
+                        
+                    
+                
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="comments.html">
+
+<div data-ng-click="$event.stopPropagation()">
+    <h3 class="popover-title">Commentaires</h3>
+
+    <div class="popover-body">
+
+        <div id="comment-scroll">
+
+            <div class="comment" data-ng-repeat="comment in comments | orderBy: 'createdAt'">
+
+                <a class="pull-left" data-ui-sref="app.profile({ id: comment.owner.id })">
+                    <img ng-src="{{ comment.owner.avatar }}" alt="" class="avatar avatar-small"/>
+                </a>
+
+
+                <p>
+                    <a data-ui-sref="app.profile({ id: comment.owner.id })">{{ comment.owner.fullName }}</a>
+                    {{ comment.content }}
+                </p>
+
+                <!-- Ago -->
+                <span class="msg-date" am-time-ago="comment.createdAt"> </span>
+            </div>
+        </div>
+
+        <form data-ng-submit="addComment()">
+            <input type="text" data-ng-model="comment.content" class="form-control" autofocus placeholder="Écrire un commentaire..."/>
+        </form>
+    </div>
+</div>
+</script>
+
+
+<div class="course-author-banner">
+
+    <div class="pull-left c-author" data-ui-sref="app.profile({id: course.owner.id})">
+
+        <a href="javascript:;" class="pull-left">
+            <img ng-src="{{ course.owner.avatar }}" alt="" class="avatar-thumb">
+        </a>
+        <div class="c-author-info">
+            {{ course.owner.fullName }}
+            <span>
+                &nbsp;|&nbsp;
+                Professeur à <b>{{ course.school.name }}</b>
+            </span>
+        </div>
+    </div>
+    <div class="pull-right c-actions">
+        <button class="btn-comments" popover-template="linkPopover.linkUrl" popover-toggle="linkPopover.linkOpen" data-ng-click="linkPopover.linkOpen = !linkPopover.linkOpen; $event.stopPropagation()" popover-placement="top">
+        <i class="fa fa-comments"></i>
+    </button>
+</div>
+
+</div>

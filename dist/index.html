@@ -1,0 +1,82 @@
+<!doctype html>
+<html class="no-js" data-ng-app="scoledgeApp" data-ng-controller="MainCtrl">
+<head>
+    <meta charset="utf-8">
+    <title ng-bind="app.name">Scoledge - L'espace de travail des écoles</title>
+    <base href="/">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+    <link rel="stylesheet" href="styles/main.4604444d.css">
+
+
+<body data-ng-click="closePopovers()">
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Header -->
+    <div id="app" ui-view></div>
+
+    <!-- JS INCLUDES -->
+
+    <script src="scripts/config.acae3e05.js"></script>
+
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-translate/2.7.2/angular-translate.min.js"></script>
+
+
+    <!--
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+
+-->
+
+<!-- /!\ sails socket -->
+<script src="scripts/libs/sails.io.min.e2f3135f.js"></script>
+<script>
+    io.sails.useCORSRouteToGetCookie = false;
+    io.sails.transports = ['websocket'];
+    io.sails.url = config.appUrl;
+</script>
+<script src="scripts/libs/ngsails.io.min.09c1bf87.js"></script>
+<script src="scripts/libs/alloy-editor/alloy-editor-all-min.js"></script>
+
+
+<script src="scripts/vendors.cc38e69c.js"></script>
+
+
+
+<script src="scripts/scripts.38266745.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-67882922-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+<script src="//apis.google.com/js/client.js?onload=handleClientLoad"></script>
+
+<script type="text/javascript">
+    window.doorbellOptions = {
+        appKey: 'Fekfug24PInAu6Z18REyFfvl0Udrt1iUexD5FEF2zkJsfmVktXdfQBnMqezlkXoP'
+    };
+    (function(d, t) {
+        var g = d.createElement(t);g.id = 'doorbellScript';g.type = 'text/javascript';g.async = true;g.src = 'https://embed.doorbell.io/button/2468?t='+(new Date().getTime());(d.getElementsByTagName('head')[0]||d.getElementsByTagName('body')[0]).appendChild(g);
+    }(document, 'script'));
+</script>
+

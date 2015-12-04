@@ -1,0 +1,65 @@
+<div id="course-teacher">
+
+    <div class="wrapper">
+
+        <!-- Create course box -->
+        <div class="course-teacher-item col-md-4">
+            <div class="pull-left" style="width:100%">
+                <div class="wrapper pull-left">
+
+                    <div class="new-course-form">
+                        <p>
+                            <input type="text" autofocus placeholder="{{ 'teacher-course.placeholder-name' | translate }}" data-ng-model="course.name" class="form-control">
+                        </p>
+                        <p class="text-center">
+
+                            <ui-select multiple sortable ng-model="course.rooms" theme="select2" style="width: 100%">
+                              <ui-select-match data-i18n="i18n-placeholder" placeholder="{{ 'teacher-course.placeholder-classroom' | translate }}">{{$item.name}}</ui-select-match>
+                              <ui-select-choices repeat="item in rooms | filter: $select.search">
+                                  {{item.name}}
+                              </ui-select-choices>
+                            </ui-select>
+
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="course-item-footer">
+                <a href="javascript:;" class="create-course" data-ng-click="create(course)"> {{ 'teacher-course.create-cta' | translate }}</a>
+            </div>
+        </div>
+
+        <div class="spinner spinner-course" data-ng-show="isLoading">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+
+        <!-- Course List -->
+       <div class="course-teacher-item col-md-4" data-ng-repeat="c in courses | orderBy: '-updatedAt'" data-ng-class="{opacity: !c.published}" data-ui-sref="app.course({id: c.id})">
+            <div class="pull-left course-img" ng-style="{'background-image': 'url(images/course/' + c.image + '/' + c.image + '_medium.jpg)'}">
+
+                <div class="centered">
+                    <p>{{ c.name }}</p>
+                </div>
+
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="course-item-footer">
+                <a href="javascript:;" class="view-course" data-ui-sref="app.course({id: c.id})">
+                  {{ 'teacher-course.view-cta' | translate }}
+                </a>
+            </div>
+
+            <span class="course-remove" data-ng-click="$event.stopPropagation(); removeCourse(c)" tooltip-trigger tooltip-placement="right" tooltip="Supprimer le cours">
+                <i class="fa fa-trash-o" style="font-size: 2.5rem; color: #fe6161"></i>
+            </span>
+
+            <span class="course-published" ng-show="c.published" tooltip-trigger tooltip-placement="left" tooltip="{{ 'teacher-course.tooltip' | translate }}">
+                <i class="fa fa-check"></i>
+            </span>
+        </div>
+    </div>
+</div>

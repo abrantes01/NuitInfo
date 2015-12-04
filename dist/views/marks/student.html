@@ -1,0 +1,38 @@
+<div id="marks">
+
+    <table class="table table-striped table-bordered table-hover table-marks-student" style="background:white">
+        <thead>
+            <tr>
+                <th class="subject">{{ 'result.subject' | translate }}
+                <th>{{ 'result.average' | translate }}
+                <th colspan="{{ maxExams }}">{{ 'result.exam' | translate }}
+
+            
+        
+        <tbody>
+            <tr data-ng-repeat="subject in subjects">
+                <td class="bold">
+                    <p>{{ subject.name }}</p>
+                    <p class="displayName teacher">{{ teachers[subject.owner].fullName }}</p>
+                
+                <td class="bold center">
+                    {{ subject.avg | number:2 }}
+                
+                <td data-ng-repeat="exam in subject.exams | orderBy: 'createdAt'">
+                    <p class="examName">
+                        {{ exam.name }}
+                    </p>
+                    <p class="mark">
+                        {{ exam.value | number:2 }}
+                    </p>
+                    <p class="coefficient">
+                        (Coef.{{ exam.coefficient }})
+                    </p>
+                
+            
+            <tr class="empty">
+            
+
+        
+    </table>
+</div>

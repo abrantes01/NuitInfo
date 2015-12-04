@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h3 class="modal-title">Votre photo profil</h3>
+</div>
+
+<div class="modal-body" id="modal-avatar">
+    <div class="wrapper-md">
+        <div class="m-b">
+            Sélectionner une photo
+            <input type="file" options="extensions" id="fileInput" nv-file-select uploader="uploader"
+            ng-model="croppedImage"/>
+        </div>
+        <div class="row">
+            <div class="wrapper-sm b-a">
+                <div class="bg-lightgrey">
+                    <img-crop
+                    image="myImage"
+                    result-image="myCroppedImage"
+                    result-image-size="200"
+                    area-type="{{cropType}}"
+                    ></img-crop>
+                </div>
+            </div>
+            <div class="inline bg-white b-a">
+                <div class="bg-lightgrey">
+                    <img ng-src="{{myCroppedImage}}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="modal-footer">
+    <button class="btn btn-default" data-ng-click="cancel()">Annuler</button>
+    <button class="btn btn-success" data-ng-click="uploader.uploadAll()">Valider</button>
+</div>

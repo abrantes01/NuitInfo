@@ -1,0 +1,11 @@
+div#validate {
+    background-image: url('/images/validate/background.png');
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+
+    p.msg {
+        margin-bottom: 20px;
+        font-size: 1.4rem;
+    }
+}

@@ -1,0 +1,99 @@
+ul.users {
+    margin:15px 20px;
+
+    li {
+        margin-top: 10px;
+
+        a {
+            font-weight:400;
+            font-size: 1.4rem;
+            text-decoration: none;
+
+            .user-status {
+                margin-top: 6px;
+                color: #868687;
+                font-weight: 400;
+                font-size: 1.2rem;
+                width: 80px;
+                text-align: right;
+            }
+
+        }
+
+        .fa-ban {
+            visibility: hidden;
+            margin-right: 10px;
+            color: rgb(239, 94, 94);
+            float: right;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+    }
+
+    li:hover {
+        .fa-ban {
+            visibility: visible;
+        }
+    }
+}
+
+ul.suggestion-list li {
+    font-size: 1.4rem !important;
+}
+
+
+img.avatar {
+    vertical-align: middle;
+    margin-top:-1px;
+    margin-right:4px;
+}
+
+
+.modal-user-list {
+    float: left;
+    font-size: 1.3rem;
+    margin-left: 8px;
+    margin-top: 6px;
+    font-weight: bold;
+
+    img {
+        float: left;
+    }
+
+    span {
+        margin-top: 5px;
+        display: block;
+        font-size: 1.3rem;
+        color: grey;
+        font-weight: normal;
+    }
+}
+
+.invite-user-group {
+
+    margin: 5px;
+
+    i.fa-times {
+        margin-right: 15%;
+        font-size: 12px;
+        cursor: pointer;
+        float: right;
+        visibility: hidden;
+    }
+
+    .col-md-6 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .col-md-6:hover {
+        i.fa-times {
+            visibility: visible;
+        }
+    }
+
+    img {
+        float: left;
+    }
+}

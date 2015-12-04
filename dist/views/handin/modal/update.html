@@ -1,0 +1,39 @@
+<!-- Translation DONE -->
+<div class="modal-header">
+    <h3 class="modal-title">Edition d'un devoir</h3>
+</div>
+
+<form action="javascript:;" data-ng-submit="save()" id="h-t-form">
+    
+    <div class="modal-body">
+
+        <div class="pull-left col-md-12">
+            <label for="name">{{ 'handin.name' | translate }}</label>
+            <input type="text" class="form-control" id="name" placeholder="{{ 'handin.placeholder-name' | translate }}"
+            data-ng-model="handin.name"/>
+        </div>
+        <div class="pull-left col-md-12" style="margin-top:12px;">
+            <label>{{ 'handin.endDate' | translate }}</label>
+        </div>
+
+        <div class="pull-left col-md-12">
+            <div class="col-md-8" style="padding:0;">
+
+                <div class="datepicker" date-format="dd/MM/yyyy" date-set="{{ parseDate }}">
+                    <input ng-model="handin.endDate" type="text" class="form-control" id="endDate"/>
+                </div>
+
+            </div>
+            <div class="col-md-4 pull-left" style="margin: -34px 0px 0px 0px;">
+                <timepicker ng-model="handinTime.date" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="false"></timepicker>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Modifier</button>
+        <button class="btn btn-default" data-ng-click="cancel()">Annuler</button>
+    </div>
+
+</form>

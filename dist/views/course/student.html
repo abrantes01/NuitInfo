@@ -1,0 +1,20 @@
+<div id="course-teacher">
+
+    <div class="wrapper">
+
+        <!-- Course List -->
+        <a class="course-teacher-item col-md-4" data-ng-repeat="c in courses | orderBy: '-updatedAt'" data-ui-sref="viewCourse({id: c.id})" target="_blank">
+            <div class="pull-left course-img" ng-style="{'background-image': 'url(images/course/' + c.image + '/'+ c.image + '_medium.jpg)'}">
+                <div class="centered">
+                    <p>{{ c.name }}</p>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="course-item-footer">
+                <span class="view-course">
+                  {{ 'teacher-course.view-cta' | translate }}
+                </span>
+            </div>
+        </a>
+    </div>
+</div>

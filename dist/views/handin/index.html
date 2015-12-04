@@ -1,0 +1,308 @@
+<style>
+.ui-view-container, body {
+    overflow:hidden;
+}
+
+#app {
+    height: 100%;
+}
+</style>
+<div id="handin">
+    <div class="addon-body">
+
+        <div class="handin-wrapper">
+
+            <!-- Handin List -->
+            <div class="panel panel-list">
+                <div class="panel-heading">
+                    <div class="pull-left handin-title">
+                        <h3>{{ activeHandins }} dépôt<span data-ng-if="handins.length > 1">s</span> actif<span data-ng-if="handins.length > 1">s</span></h3>
+                    </div>
+                    <div class="pull-right">
+                        <a href="javascript:;" class="add-handin" popover-append-to-body="true" popover-placement="bottom" popover-toggle="linkPopover.linkOpen" data-ng-click="linkPopover.linkOpen = !linkPopover.linkOpen; $event.stopPropagation()" popover-template="linkPopover.templateUrl">
+                        <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                            <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd" sketch:type="MSPage">
+                                <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-464.000000, -1087.000000)">
+                                    <path d="M480,1117 C472.268,1117 466,1110.73 466,1103 C466,1095.27 472.268,1089 480,1089 C487.732,1089 494,1095.27 494,1103 C494,1110.73 487.732,1117 480,1117 L480,1117 Z M480,1087 C471.163,1087 464,1094.16 464,1103 C464,1111.84 471.163,1119 480,1119 C488.837,1119 496,1111.84 496,1103 C496,1094.16 488.837,1087 480,1087 L480,1087 Z M486,1102 L481,1102 L481,1097 C481,1096.45 480.553,1096 480,1096 C479.447,1096 479,1096.45 479,1097 L479,1102 L474,1102 C473.447,1102 473,1102.45 473,1103 C473,1103.55 473.447,1104 474,1104 L479,1104 L479,1109 C479,1109.55 479.447,1110 480,1110 C480.553,1110 481,1109.55 481,1109 L481,1104 L486,1104 C486.553,1104 487,1103.55 487,1103 C487,1102.45 486.553,1102 486,1102 L486,1102 Z" id="Fill-25" sketch:type="MSShapeGroup"></path>
+                                </g>
+                            </g>
+                        </svg>
+                        Nouveau
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <!-- Illustration -->
+            <div>
+
+            </div>
+
+
+            <!-- Loader -->
+            <div class="spinner" data-ng-show="isLoading">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+            </div>
+
+              <div id="handin-main" data-ng-show="!isLoading">
+                <div class="panel-body" data-ng-if="handins.length > 0">
+                    <ul class="handin-nav">
+
+                        <!-- ACTIVE HANDINS -->
+                        <li data-ng-repeat="h in handins | orderBy: 'endDate' track by h.id " data-ng-click="loadUsers(h)" data-ng-if="!isPassed(h.endDate)" data-ng-class="{'active': h.id == currentItem.id }" style="width: 100%">
+                            <div class="handin-nav-wrapper">
+                                <div class="col-md-2">
+                                    <div class="date-cal" data-ng-class="isPassed(h.endDate)">
+                                        <p>{{ h.endDate | amDateFormat: 'DD' }}</p>
+
+                                        <div class="date-bottom">
+                                            <p>{{ h.endDate | amDateFormat: 'MMM' }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="handin-row pull-left">
+                                    <div class="col-md-4">
+                                        <p data-ng-class="{'long-name': h.name.length > 45 }">{{ h.name }}</p>
+                                    </div>
+
+                                    <div class="col-md-4" style="color:#868687; font-weight: 300; text-align: center; line-height: 18px; margin-top: -7px">
+                                        Termine le {{ h.endDate | date:'dd/MM/yyyy à HH:mm'}}
+                                        (<b><span am-time-ago="h.endDate"></span></b>)
+
+                                    </div>
+
+                                    <div class="col-md-4" style="color:#868687; font-weight: 300; text-align: right">
+                                        <i class="fa fa-graduation-cap"></i>
+                                        <span>{{ h.room.name }}</span>
+                                    </div>
+
+                                    <div class="angle-hover" style="color:#868687;margin-top:1px">
+                                        <span class="dropdown handin-settings" dropdown>
+
+                                            <a href class="dropdown-toggle" dropdown-toggle>
+                                                <i class="fa fa-gear"></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="javascript:;" data-ng-click="updateHandin(h)">
+                                                        <i class="fa fa-edit"></i>
+                                                        &nbsp;{{ 'handin.edit-cta' | translate }}
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:;" data-ng-click="deleteHandin(h)">
+                                                        <i class="fa fa-trash-o"></i> &nbsp;
+                                                        {{ 'handin.delete-cta' | translate }}
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+
+
+
+                        <!-- PASSED HANDINS -->
+
+
+                        <li data-ng-repeat="h in handins | orderBy: '-endDate' track by h.id " data-ng-click="loadUsers(h)" data-ng-if="isPassed(h.endDate)" data-ng-class="{'active': h.id == currentItem.id }" style="width: 100%">
+                            <div class="handin-nav-wrapper">
+                                <div class="col-md-2">
+                                    <div class="date-cal" data-ng-class="isPassed(h.endDate)">
+                                        <p>{{ h.endDate | amDateFormat: 'DD' }}</p>
+
+                                        <div class="date-bottom">
+                                            <p>{{ h.endDate | amDateFormat: 'MMM' }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="handin-row pull-left">
+                                    <div class="col-md-4">
+                                        <p data-ng-class="{'long-name': h.name.length > 45 }">{{ h.name }}</p>
+                                    </div>
+
+                                    <div class="col-md-4" style="color:#868687; font-weight: 300; text-align: center">
+                                        Fini le {{ h.endDate | date:'dd/MM/yyyy à HH:mm'}}
+                                    </div>
+
+                                    <div class="col-md-4" style="color:#868687; font-weight: 300; text-align: right">
+                                        <i class="fa fa-graduation-cap"></i>
+                                        <span>{{ h.room.name }}</span>
+                                    </div>
+
+                                    <div class="angle-hover">
+                                        <i class="fa fa-angle-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<div class="addon-right" id="handin-second">
+
+    <div class="handin-users" data-ng-if="handins.length > 0">
+
+        <h2>{{ currentItem.name }}</h2>
+
+        <p class="handin-subtitle h-submitted">{{ 'handin.done' | translate }} ({{ users_submitted.length }})
+
+            <a class="download-zip" data-ng-click="zip()" data-ng-if="!downloading">
+                <svg viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                    <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd" sketch:type="MSPage">
+                        <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-412.000000, -1087.000000)">
+                            <path d="M428,1117 C420.268,1117 414,1110.73 414,1103 C414,1095.27 420.268,1089 428,1089 C435.732,1089 442,1095.27 442,1103 C442,1110.73 435.732,1117 428,1117 L428,1117 Z M428,1087 C419.163,1087 412,1094.16 412,1103 C412,1111.84 419.163,1119 428,1119 C436.837,1119 444,1111.84 444,1103 C444,1094.16 436.837,1087 428,1087 L428,1087 Z M433.121,1102.46 L429,1106.59 L429,1096 C429,1095.45 428.553,1095 428,1095 C427.448,1095 427,1095.45 427,1096 L427,1106.59 L422.879,1102.46 C422.488,1102.07 421.855,1102.07 421.465,1102.46 C421.074,1102.86 421.074,1103.49 421.465,1103.88 L427.121,1109.54 C427.361,1109.78 427.689,1109.85 428,1109.79 C428.311,1109.85 428.639,1109.78 428.879,1109.54 L434.535,1103.88 C434.926,1103.49 434.926,1102.86 434.535,1102.46 C434.146,1102.07 433.512,1102.07 433.121,1102.46 L433.121,1102.46 Z" id="Fill-26" sketch:type="MSShapeGroup"></path>
+                        </g>
+                    </g>
+                </svg>
+              {{ 'handin.download-cta' | translate }}
+            </a>
+
+            <span class="pull-right" data-ng-if="downloading" style="font-size: 1.3rem; margin-top: -20px">
+                {{ 'handin.prepare' | translate }} (Fichier {{ currentDownload }} sur {{ nbFiles }})
+                <progressbar value="currentDownload*100/nbFiles" class="progress-xs m-b-none bg-white" type="success"></progressbar>
+        </span></p>
+
+
+
+        <ul class="assignment-list">
+            <li data-ng-repeat="user in users_submitted" data-ng-click="user.active = !user.active">
+
+                <img ng-src="{{ user.avatar }}" alt="" class="avatar avatar-xs-medium pull-left">
+
+                <div class="pull-left assignment-info">
+
+                    <p class="displayName">
+                        {{ user.fullName }}
+                    </p>
+
+                    <p>{{ user.assignment.files.length }} fichiers
+                        <i class="fa fa-caret-down" data-ng-if="user.active"></i>
+                    </p>
+
+                </div>
+
+                <span class="pull-right">
+                    <i class="fa fa-clock-o"></i>
+                    <span>{{ user.assignment.createdAt | date:'dd/MM/yyyy à HH:mm' }}</span>
+                </span>
+
+                <div class="clearfix"></div>
+
+
+                <div class="user-files-handin">
+                    <table data-ng-if="user.active">
+                        <tbody>
+                            <tr data-ng-repeat="file in user.assignment.files" data-ng-click="$event.stopPropagation();download(file)">
+                                <td>
+                                    <span class="fileIcon sprite-image"></span>
+                                    {{ file.name |  cut:false:32:'...'  }}
+                                
+                            
+                        
+                    </table>
+                </div>
+            </li>
+
+        </ul>
+
+
+
+
+        <p class="handin-subtitle h-pending">
+          {{ 'handin.pending' | translate }} ({{ users_pending.length }})
+
+            <a class="btn-notify" data-ng-click="notify()" data-ng-show="!alreadyNotified">
+                <svg viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                    <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd" sketch:type="MSPage">
+                        <path d="M26.94,13.6193053 L22.957,20.3583053 L22.557,26.8703053 L3.583,16.1713053 L9.157,12.5773053 L13.141,5.83730526 C15.341,2.11630526 20.214,0.840305264 24.023,2.99030526 C27.834,5.13830526 29.14,9.89730526 26.94,13.6193053 L26.94,13.6193053 Z M10.58,25.7333053 C9.151,24.9273053 8.661,23.1433053 9.486,21.7473053 L14.661,24.6653053 C13.836,26.0613053 12.009,26.5383053 10.58,25.7333053 L10.58,25.7333053 Z M25.02,1.30430526 C20.257,-1.38069474 14.166,0.212305264 11.416,4.86530526 L7.433,11.6043053 L0,16.3983053 L7.762,20.7753053 C6.387,23.1013053 7.202,26.0753053 9.584,27.4173053 C11.966,28.7613053 15.011,27.9643053 16.386,25.6383053 L24.147,30.0153053 L24.682,21.3303053 L28.665,14.5913053 C31.415,9.93930526 29.783,3.99130526 25.02,1.30430526 L25.02,1.30430526 Z" id="Fill-66" sketch:type="MSShapeGroup" transform="translate(15.000432, 15.007653) scale(-1, 1) translate(-15.000432, -15.007653) "></path>
+                    </g>
+                </svg>
+              {{ 'handin.notification-cta' | translate }}
+            </a>
+        </p>
+        <ul class="assignment-list">
+            <li data-ng-repeat="user in users_pending">
+
+                <img ng-src="{{ user.avatar }}" alt="" class="avatar avatar-xs-medium pull-left">
+
+                <div class="pull-left assignment-info">
+
+                    <p class="displayName">
+                        {{ user.fullName }}
+                    </p>
+
+                    <p></p>
+
+                </div>
+
+                <div class="clearfix"></div>
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+</div>
+</div>
+
+<!-- POPUP NEW HANDIN -->
+<script type="text/ng-template" id="newHandin.html">
+    <div data-ng-click="$event.stopPropagation()">
+        <div class="panel" id="popover-new-handin">
+
+        <!-- Select Classroom -->
+        <form id="select-classroom">
+            <label for="endDate">{{ 'handin.classroom' | translate }}</label>
+            <ui-select ng-model="selected.room" theme="selectize" on-select="loadClassRoom()" style="margin-bottom:4px;">
+            <ui-select-match placeholder="{{ 'handin.placeholder-classroom' | translate }}">{{$select.selected.name }}</ui-select-match>
+            <ui-select-choices repeat="item in rooms | filter: $select.search" group-filter="reverseOrderFilterFn">
+            <div ng-bind-html="item.name | highlight: $select.search"></div>
+            <small ng-bind-html="item.description | highlight: $select.search"></small>
+            </ui-select-choices>
+            </ui-select>
+        </form>
+
+
+        <!-- Create Handin form -->
+        <form data-ng-if="selected.room" data-ng-submit="create()" id="h-t-form">
+            <div class="pull-left col-md-12">
+            <label for="name">{{ 'handin.name' | translate }}</label>
+            <input type="text" class="form-control" id="name" placeholder="{{ 'handin.placeholder-name' | translate }}"
+            data-ng-model="handin.name"/>
+            </div>
+                <div style="margin-top:5px;" class="pull-left">
+                    <label for="endDate">{{ 'handin.endDate' | translate }}</label>
+                    <div class="pull-left col-md-6">
+
+                        <div class="datepicker" date-format="dd/MM/yyyy" data-set="{{ setDate }}">
+                            <input ng-model="handin.endDate" type="text" class="form-control" id="endDate" placeholder="dd/MM/yyyy"/>
+                        </div>
+
+                    </div>
+
+                    <div class="pull-right col-md-6" style="margin: -34px 0px 0px 0px;">
+                        <timepicker ng-model="handinTime.date" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="false"></timepicker>
+                    </div>
+
+                </div>
+
+            <button class="handin-create" type="submit">{{ 'handin.create-cta' | translate }}</button>
+        </form>
+        <div class="clearfix"></div>
+        </div>
+    </div>
+</script>
