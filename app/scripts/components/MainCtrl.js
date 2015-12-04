@@ -8,6 +8,7 @@ angular.module('sauvetapp')
     
     var lat;
     var long;
+    $scope.showed = false;
     
     function maPosition(position) {        
         lat = position.coords.latitude;
@@ -23,6 +24,7 @@ angular.module('sauvetapp')
         console.log(long);
         console.log("JEEEJ");
         
+        
         $sailsSocket.post("/alert",{
             latitude: lat,
             longitude: long,
@@ -33,6 +35,8 @@ angular.module('sauvetapp')
         }, function (err){
             console.log(err); 
         });
+        
+        $scope.showed = true;
     }
         $sailsSocket.get("/strategy")
             .then(function(data) {
