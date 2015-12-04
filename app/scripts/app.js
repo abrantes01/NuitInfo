@@ -36,6 +36,7 @@ angular
     })
     .state("app.helpme",{
         url: "/helpme",
+        controller: 'MainCtrl',
         templateUrl: '/views/home/helpme.html'
     })
     .state("app.profile",{
