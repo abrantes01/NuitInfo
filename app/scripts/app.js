@@ -38,6 +38,7 @@ angular
     })
     .state("app.helpme",{
         url: "/helpme",
+        controller: 'MainCtrl',
         templateUrl: '/views/home/helpme.html'
     })
     .state("app.who",{
@@ -47,6 +48,27 @@ angular
     .state("app.map",{
         url:"/map",
         templateUrl:'/views/home/map.html'
+    .state("app.itinary",{
+        resolve:{
+             center: [
+                '$stateParams','$sailsSocket',
+                function($stateParams,$sailsSocket){
+                    return $sailsSocket.get('/center/'+$stateParams.id)
+                    .then(function(response) {
+                        return response.data;
+                    },function(err){
+                        console.log(err);
+                    });
+                }
+            ]
+        },
+        url:"/itinary/:id",
+        controller:'MapCtrl',
+        templateUrl:'/views/home/itinary.html'
+    })
+    .state("app.profile",{
+        url:"/profile",
+        templateUrl:'/views/home/profile.html'
     })
     .state('admin', {
         url: '/admin',

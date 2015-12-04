@@ -1,34 +1,34 @@
 // Generated on 2015-06-23 using generator-angular 0.11.1
 'use strict';
-
+ 
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
-
+ 
 module.exports = function (grunt) {
-
+ 
     // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
-
+ 
     // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
-
+ 
     grunt.loadNpmTasks('grunt-replace');
-
+ 
     // Configurable paths for the application
     var appConfig = {
         app: require('./bower.json').appPath || 'app',
         dist: 'dist'
     };
-
+ 
     // Define the configuration for all the tasks
     grunt.initConfig({
-
+ 
         // Project settings
         yeoman: appConfig,
-
+ 
         // Watches files for changes and runs tasks based on the changed files
         watch: {
             js: {
@@ -60,7 +60,7 @@ module.exports = function (grunt) {
                 ]
             }
         },
-
+ 
         sass: {
             dist: {
                 files: [{
@@ -77,7 +77,7 @@ module.exports = function (grunt) {
                 }
             }
         },
-
+ 
         // The actual grunt server settings
         connect: {
             options: {
@@ -128,9 +128,9 @@ module.exports = function (grunt) {
                 }
             }
         },
-
-
-
+ 
+ 
+ 
         // Make sure code styles are up to par and there are no obvious mistakes
         jshint: {
             options: {
@@ -150,7 +150,7 @@ module.exports = function (grunt) {
                 src: ['test/spec/{,*/}*.js']
             }
         },
-
+ 
         // Empties folders to start fresh
         clean: {
             dist: {
@@ -165,8 +165,8 @@ module.exports = function (grunt) {
             },
             server: '.tmp'
         },
-
-
+ 
+ 
         // To replace localhost url by production API
         replace: {
             dist: {
@@ -190,8 +190,8 @@ module.exports = function (grunt) {
                 ]
             }
         },
-
-
+ 
+ 
         // Add vendor prefixed styles
         autoprefixer: {
             options: {
@@ -217,38 +217,38 @@ module.exports = function (grunt) {
                 }]
             }
         },
-
-
-
+ 
+ 
+ 
         // Compiles Sass to CSS and generates necessary files if requested
-        // compass: {
-        //     options: {
-        //         sassDir: '<%= yeoman.app %>/styles',
-        //         cssDir: '.tmp/styles',
-        //         generatedImagesDir: '.tmp/images/generated',
-        //         imagesDir: '<%= yeoman.app %>/images',
-        //         javascriptsDir: '<%= yeoman.app %>/scripts',
-        //         fontsDir: '<%= yeoman.app %>/styles/fonts',
-        //         importPath: './bower_components',
-        //         httpImagesPath: '/images',
-        //         httpGeneratedImagesPath: '/images/generated',
-        //         httpFontsPath: '/styles/fonts',
-        //         relativeAssets: false,
-        //         assetCacheBuster: false,
-        //         raw: 'Sass::Script::Number.precision = 10\n'
-        //     },
-        //     dist: {
-        //         options: {
-        //             generatedImagesDir: '<%= yeoman.dist %>/images/generated'
-        //         }
-        //     },
-        //     server: {
-        //         options: {
-        //             sourcemap: true
-        //         }
-        //     }
-        // },
-
+        compass: {
+            options: {
+                sassDir: '<%= yeoman.app %>/styles',
+                cssDir: '.tmp/styles',
+                generatedImagesDir: '.tmp/images/generated',
+                imagesDir: '<%= yeoman.app %>/images',
+                javascriptsDir: '<%= yeoman.app %>/scripts',
+                fontsDir: '<%= yeoman.app %>/styles/fonts',
+                importPath: './bower_components',
+                httpImagesPath: '/images',
+                httpGeneratedImagesPath: '/images/generated',
+                httpFontsPath: '/styles/fonts',
+                relativeAssets: false,
+                assetCacheBuster: false,
+                raw: 'Sass::Script::Number.precision = 10\n'
+            },
+            dist: {
+                options: {
+                    generatedImagesDir: '<%= yeoman.dist %>/images/generated'
+                }
+            },
+            server: {
+                options: {
+                    sourcemap: true
+                }
+            }
+        },
+ 
         // Renames files for browser caching purposes
         filerev: {
             dist: {
@@ -260,7 +260,7 @@ module.exports = function (grunt) {
                 ]
             }
         },
-
+ 
         // Reads HTML for usemin blocks to enable smart builds that automatically
         // concat, minify and revision files. Creates configurations in memory so
         // additional tasks can operate on them
@@ -271,15 +271,15 @@ module.exports = function (grunt) {
                 flow: {
                     html: {
                         steps: {
-                            js: ['concat', 'uglifyjs'],
-                            css: ['cssmin']
+                            js: ['concat', 'uglifyjs']
+                            //css: ['cssmin']
                         },
                         post: {}
                     }
                 }
             }
         },
-
+ 
         // Performs rewrites based on filerev and the useminPrepare configuration
         usemin: {
             html: ['<%= yeoman.dist %>/{,*/}*.html'],
@@ -292,7 +292,7 @@ module.exports = function (grunt) {
                 ]
             }
         },
-
+ 
         // The following *-min tasks will produce minified files in the dist folder
         // By default, your `index.html`'s <!-- Usemin block --> will take care of
         // minification. These next options are pre-configured if you do not wish
@@ -318,7 +318,7 @@ module.exports = function (grunt) {
         // concat: {
         //   dist: {}
         // },
-
+ 
         imagemin: {
             dist: {
                 files: [{
@@ -329,7 +329,7 @@ module.exports = function (grunt) {
                 }]
             }
         },
-
+ 
         svgmin: {
             dist: {
                 files: [{
@@ -340,7 +340,7 @@ module.exports = function (grunt) {
                 }]
             }
         },
-
+ 
         htmlmin: {
             dist: {
                 options: {
@@ -358,7 +358,7 @@ module.exports = function (grunt) {
                 }]
             }
         },
-
+ 
         // ng-annotate tries to make the code safe for minification automatically
         // by using the Angular long form for dependency injection.
         ngAnnotate: {
@@ -371,14 +371,14 @@ module.exports = function (grunt) {
                 }]
             }
         },
-
+ 
         // Replace Google CDN references
         cdnify: {
             dist: {
                 html: ['<%= yeoman.dist %>/*.html']
             }
         },
-
+ 
         // Copies remaining files to places other tasks can use
         copy: {
             dist: {
@@ -419,22 +419,22 @@ module.exports = function (grunt) {
                 src: '{,*/}*.css'
             }
         },
-
+ 
         // Run some tasks in parallel to speed up the build process
-        // concurrent: {
-        //     server: [
-        //         'compass:server'
-        //     ],
-        //     test: [
-        //         'compass'
-        //     ],
-        //     dist: [
-        //         'compass:dist',
-        //         'imagemin',
-        //         'svgmin'
-        //     ]
-        // },
-
+        concurrent: {
+            server: [
+                'compass:server'
+            ],
+            test: [
+                'compass'
+            ],
+            dist: [
+                'compass:dist',
+                'imagemin',
+                'svgmin'
+            ]
+        },
+ 
         // Test settings
         karma: {
             unit: {
@@ -442,7 +442,7 @@ module.exports = function (grunt) {
                 singleRun: true
             }
         },
-
+ 
         compress: {
             main: {
                 options: {
@@ -456,27 +456,27 @@ module.exports = function (grunt) {
             }
         }
     });
-
-
+ 
+ 
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:keepalive']);
         }
-
+ 
         grunt.task.run([
             'clean:server',
-            //'concurrent:server',
+            'concurrent:server',
             'autoprefixer:server',
             'connect:livereload',
             'watch'
         ]);
     });
-
+ 
     grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
         grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
         grunt.task.run(['serve:' + target]);
     });
-
+ 
     grunt.registerTask('test', [
         'clean:server',
         'concurrent:test',
@@ -484,7 +484,7 @@ module.exports = function (grunt) {
         'connect:test',
         'karma'
     ]);
-
+ 
     grunt.registerTask('build', [
         'clean:dist',
         'replace',
@@ -495,14 +495,14 @@ module.exports = function (grunt) {
         'ngAnnotate',
         'copy:dist',
         'cdnify',
-        'cssmin',
+        //'cssmin',
         'uglify',
         'filerev',
         'usemin',
         'htmlmin',
         'compress'
     ]);
-
+ 
     grunt.registerTask('default', [
         'newer:jshint',
         /*    'test',*/
