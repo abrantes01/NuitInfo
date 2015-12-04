@@ -10,6 +10,9 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/styles/styles.css">
+    <script src='//maps.googleapis.com/maps/api/js'></script>
+
     <!-- endbuild -->
 
 </head>
@@ -41,6 +44,8 @@
 
 
 
+<script src="/bower_components/lodash/lodash.min.js"></script>
+
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
 <script src="scripts/StorageService.js"></script>
@@ -48,10 +53,10 @@
 <script src="scripts/components/MainCtrl.js"></script>
 <script src="scripts/components/AdminCtrl.js"></script>
 <script src="scripts/components/StrategiesCtrl.js"></script>
+<script src="scripts/components/InfosCtrl.js"></script>
+<script src="scripts/libs/ngMap.js"></script>
 
 <!-- endbuild -->
-
-<script src="//apis.google.com/js/client.js?onload=handleClientLoad"></script>
 
 </body>
 </html>
