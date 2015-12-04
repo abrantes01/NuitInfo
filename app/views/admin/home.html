@@ -2,7 +2,7 @@
     <h2>Carte interactive</h2><br />
 
     <ng-map zoom="14" center="[48.5809200, 7.7455100]">
-        <marker icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png" data-ng-repeat="marker in markers" position="{{marker.latitude}},{{marker.longitude}}" title="Hello World!"></marker>
+        <marker icon="/images/victime_marker.png" data-ng-repeat="marker in markers" position="{{marker.latitude}},{{marker.longitude}}" title="Hello World!"></marker>
         <marker icon="/images/safe.png" data-ng-repeat="center in centers" position="{{center.latitude}},{{center.longitude}}" title="Hello World!"></marker>
 
         <shape name="polygon"
@@ -12,10 +12,10 @@
             [48.58784410000001, 7.7188416999999845],
             [48.5922144, 7.716621600000053]
           ]"
-          stroke-color="#ffa500"
+          stroke-color="#FF0000"
           stroke-opacity="0.8"
           stroke-weight="2"
-          fill-color="#ffa500"
+          fill-color="#FF0000"
           fill-opacity="0.75">
         </shape>
 
@@ -65,10 +65,10 @@
                     [48.58150, 7.73937],
                     [48.58317, 7.73942]
                   ]"
-          stroke-color="#ffa500"
+          stroke-color="#FF0000"
           stroke-opacity="0.8"
           stroke-weight="2"
-          fill-color="#ffa500"
+          fill-color="#FF0000"
           fill-opacity="0.75">
         </shape>
 
